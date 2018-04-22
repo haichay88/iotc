@@ -7,14 +7,12 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/data/', function (req, res, next) {
-  console.log("t1" + req.query.t1);
-  console.log("t2" + req.query.t2);
-  console.log("h1" + req.query.h1);
+  
   
   res.render('data', { data: '1000',layout:false});
 });
 
-router.post('/data/', function (req, res, next) {
+router.post('/update/', function (req, res, next) {
   
  
   res.render('data', { data: '1000',layout:false});

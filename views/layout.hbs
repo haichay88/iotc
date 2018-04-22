@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
-  </head>
-  <body>
-    {{{body}}}
 
-    <script src="/javascripts/jquery-1.10.2.js"></script>
-    <script src="/javascripts/bootstrap.min.js"></script>
-  </body>
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+</head>
+
+<body>
+  {{{body}}}
+
+  <script src="/javascripts/jquery-1.10.2.js"></script>
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#inlineCheckbox1").click(function () {
+        debugger
+
+
+        $.ajax({
+          url: "/update",
+          method: "POST",
+          data: { lam1: menuId },
+          dataType: "html"
+        });
+      });
+
+    });
+  </script>
+</body>
+
 </html>
