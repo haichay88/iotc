@@ -16,7 +16,7 @@ router.get('/data/', function (req, res, next) {
 
 router.post('/data/', function (req, res, next) {
   
-  res.append("1000");
+ 
   res.render('data', { data: '1000',layout:false});
   //res.render('index', { title: 'Express',layout:'layout'});
 });
