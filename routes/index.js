@@ -14,4 +14,10 @@ router.get('/data/', function (req, res, next) {
   //res.render('index', { title: 'Express',layout:'layout'});
 });
 
+router.post('/data/', function (req, res, next) {
+  
+  res.append("1000");
+  //res.render('index', { title: 'Express',layout:'layout'});
+});
+
 module.exports = router;
