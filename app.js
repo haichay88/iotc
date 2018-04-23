@@ -38,9 +38,9 @@ app.use(function (err, req, res, next) {
   res.render('error');
 
   // listen for requests
-  app.listen(6000, function () {
-    console.log("Server is listening on port 1000");
-  });
+  // app.listen(6000, function () {
+  //   console.log("Server is listening on port 1000");
+  // });
 
 });
 
