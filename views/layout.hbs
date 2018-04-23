@@ -7,27 +7,15 @@
   <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 </head>
 
-<body>
+<body ng-app="iotModule">
   {{{body}}}
 
   <script src="/javascripts/jquery-1.10.2.js"></script>
   <script src="/javascripts/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $("#inlineCheckbox1").click(function () {
-        debugger
-
-
-        $.ajax({
-          url: "/update",
-          method: "POST",
-          data: { lam1: menuId },
-          dataType: "html"
-        });
-      });
-
-    });
-  </script>
+  <script src="/javascripts/angular.min.js"></script>
+  <script src="/javascripts/app/module.js"></script>
+  <script src="/javascripts/app/testController.js"></script>
+  
 </body>
 
 </html>
