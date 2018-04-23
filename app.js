@@ -38,7 +38,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 
   // listen for requests
-app.listen(6000,'45.77.128.178',function (){
+app.listen(6000,function (){
   console.log("Server is listening on port 1000");
 });
  
