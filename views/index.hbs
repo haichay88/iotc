@@ -1,15 +1,129 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-<div class="row" ng-controller="testController">
-    <form>
-        <div class="form-check form-check-inline" ng-click="updateStatic()">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" ng-model="lam1" value="1000">
-            <label class="form-check-label" for="inlineCheckbox1">Đèn 1(Bật) </label>
+<div class="page-content" style="min-height: 1540px;" ng-controller="testController">
+    <!-- BEGIN PAGE HEADER-->
+
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Form Stuff</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li>
+                        <a href="#">
+                            <i class="icon-bell"></i> Action</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-shield"></i> Another action</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-user"></i> Something else here</a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-bag"></i> Separated link</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="form-check form-check-inline" ng-click="updateStatic()">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1"  ng-model="lam2"value="on2">
-            <label class="form-check-label" for="inlineCheckbox1">Đèn 2(Bật) </label>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- BEGIN PAGE TITLE-->
+    <h1 class="page-title"> Form Controls
+        <small>Test access controll IOT</small>
+    </h1>
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12 ">
+            <!-- BEGIN SAMPLE FORM PORTLET-->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="icon-settings font-red-sunglo"></i>
+                        <span class="caption-subject bold uppercase"> Signal and input output</span>
+                    </div>
+                    <div class="actions">
+                        <div class="btn-group">
+                            <a class="btn btn-sm green dropdown-toggle" href="javascript:;" data-toggle="dropdown"> Actions
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="javascript:;">
+                                        <i class="fa fa-pencil"></i> Edit </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <i class="fa fa-trash-o"></i> Delete </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <i class="fa fa-ban"></i> Ban </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="javascript:;"> Make admin </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form role="form">
+                        <div class="form-body">
+                            <div class="form-group" ng-init="loadStatic()">
+                                <label class="control-label col-md-1">Đèn 1</label>
+                                <div class="col-md-2">
+                                    <div class="bootstrap-switch-container" ng-click="updateStatic()" >
+                                        <input type="checkbox" checked=""  class="make-switch" ng-model="lam1" data-size="small">
+                                    </div>
+                                </div>
+
+                                <label class="control-label col-md-1">Đèn 2</label>
+                                <div class="col-md-2">
+                                    <div class="bootstrap-switch-container" ng-click="updateStatic()"  >
+                                        <input type="checkbox" checked="" ng-model="lam2" class="make-switch" data-size="small">
+                                    </div>
+                                </div>
+
+                                 <label class="control-label col-md-1">Đèn 3</label>
+                                <div class="col-md-2">
+                                    <div class="bootstrap-switch-container" ng-click="updateStatic()">
+                                        <input type="checkbox" checked=""  ng-model="lam3" class="make-switch"  data-size="small">
+                                    </div>
+                                </div>
+
+                                <label class="control-label col-md-1">Đèn 4</label>
+                                <div class="col-md-2">
+                                    <div class="bootstrap-switch-container" ng-click="updateStatic()">
+                                        <input type="checkbox" checked="" ng-model="lam4" class="make-switch"  data-size="small">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+
         </div>
 
-    </form>
+    </div>
+
 </div>

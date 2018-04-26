@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express', layout: 'layout' });
+  res.render('index', { title: 'IOT access control', layout: 'layout' });
 });
 
 router.get('/data/', function (req, res, next) {
