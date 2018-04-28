@@ -8,6 +8,17 @@ app.service("testService", function ($http) {
         });
         return request;
     };
+
+    this.getStatic = function () {
+        var request = $http({
+            method: "get",
+            url: "/static",
+            contentType: "application/json; charset=UTF-8",
+            
+        });
+        return request;
+    };
+
 });
 
 app.controller("testController", function ($scope, testService) {
@@ -19,6 +30,7 @@ app.controller("testController", function ($scope, testService) {
             lam3: $scope.lam3 ? '1' : '0',
             lam4: $scope.lam4 ? '1' : '0'
         };
+        debugger
         var promiseGet = testService.updateStatic($scope.static);
         promiseGet.then(function (pl) {
             if (pl.data) {
@@ -33,16 +45,11 @@ app.controller("testController", function ($scope, testService) {
 
     $scope.loadStatic = function () {
 
-        $scope.static = {
-            lam1: $scope.lam1 ? '1' : '0',
-            lam2: $scope.lam2 ? '1' : '0',
-            lam3: $scope.lam3 ? '1' : '0',
-            lam4: $scope.lam4 ? '1' : '0',
-        };
-        var promiseGet = testService.updateStatic($scope.static);
+       
+        var promiseGet = testService.getStatic();
         promiseGet.then(function (pl) {
             if (pl.data) {
-                
+                debugger
                 //toastr.error(pl.data.Message)
             }
 

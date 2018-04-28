@@ -14,6 +14,15 @@ router.get('/data/', function (req, res, next) {
   res.render('data', { data: '1000',layout:false});
 });
 
+router.get('/static/', function (req, res, next) {
+  
+  api.getStatic(function(data){
+    
+    res.json(data);
+  });
+});
+
+
 router.post('/update/', function (req, res, next) {
   
   api.UpdateStatic(req.body,function(data){
