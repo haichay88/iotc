@@ -34,7 +34,11 @@ app.controller("testController", function ($scope, testService) {
         var promiseGet = testService.updateStatic($scope.static);
         promiseGet.then(function (pl) {
             if (pl.data) {
-                
+                var data=JSON.parse(pl.data);
+                $scope.lam1=data[0].lam1=='1'?true:false ;
+                $scope.lam2=data[0].lam2=='1'?true:false ;
+                $scope.lam3=data[0].lam3=='1'?true:false ;
+                $scope.lam4=data[0].lam4=='1'?true:false ;
                 //toastr.error(pl.data.Message)
             }
 
@@ -48,9 +52,14 @@ app.controller("testController", function ($scope, testService) {
        
         var promiseGet = testService.getStatic();
         promiseGet.then(function (pl) {
+            debugger
             if (pl.data) {
-                debugger
-                //toastr.error(pl.data.Message)
+            
+                var data=JSON.parse(pl.data);
+                $scope.lam1=data[0].lam1=='1'?true:false ;
+                $scope.lam2=data[0].lam2=='1'?true:false ;
+                $scope.lam3=data[0].lam3=='1'?true:false ;
+                $scope.lam4=data[0].lam4=='1'?true:false ;
             }
 
         },
