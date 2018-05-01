@@ -5,7 +5,17 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'IOT access control', layout: 'layout' });
+  res.render('index', { title: 'IOT access control', layout: 'layoutDefault' });
+});
+
+router.get('/device', function (req, res, next) {
+ 
+  res.render('device/list', { title: 'IOT access control', layout: 'layoutVultr' });
+});
+
+router.get('/device/add', function (req, res, next) {
+ 
+  res.render('device/add', { title: 'IOT access control', layout: 'layoutVultr' });
 });
 
 router.get('/data/', function (req, res, next) {

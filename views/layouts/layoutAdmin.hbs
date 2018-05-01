@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=0">
+    <title>My Subscriptions - thbox</title>
+    <!-- Styles -->
+    <link href="/stylesheets/vultr/global.css" rel="stylesheet">
+    <link href="/stylesheets/vultr/bootstrap-grid.css" rel="stylesheet">
+    <link href="/stylesheets/vultr/form.authy.css" rel="stylesheet">
+    <link href="/stylesheets/vultr/flags.authy.css" rel="stylesheet">
+    <link href="/stylesheets/vultr/select2.min.css" rel="stylesheet">
+    <style type="text/css">
+        .select2-container--default .select2-selection--single {
+            border-color: #DCDEE0;
+            height: 50px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 50px;
+            padding-left: 15px;
+            padding-top: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 50px;
+        }
+    </style>
+
+</head>
+
+<body style="">
+
+ {{>menuleftV}}
+
+
+    <div id="header0h_0">
+        <div id="header0h_1" onclick="menusidebarShow(); event.preventDefault(); event.stopPropagation();">
+        </div>
+        <a id="header0h_2" href="/">
+        </a>
+        &nbsp;
+    </div>
+
+
+
+    <div id="header1_session">
+        <div>
+            <span class="glyph"></span>
+            <span class="inactivity_message">Your session will expire soon due to inactivity</span>
+            <a class="button" href="#" onclick="inactivity_continue(); return false;">Continue Session</a>
+        </div>
+    </div>
+
+    <div id="header1_0">
+
+        <a href="#" class="hide_on_mobile" id="header1_2" data-offset-x="43" data-offset-y="10" data-dropdownpopup="CgkJPGEgaHJlZj0iIyIgYXJpYS1sYWJlbD0iUG9wdXAgTWVudSIgb25jbGljaz0icmV0dXJuIGZhbHNlOyIgc3R5bGU9Im91dGxpbmUtd2lkdGg6IDBweDsgaGVpZ2h0OiAwcHg7IHBhZGRpbmc6IDBweDsgbWFyZ2luOiAwcHg7Ij48L2E+CgkJPGEgaHJlZj0iL3NldHRpbmdzLyNzZXR0aW5nc3Byb2ZpbGUiIG9uY2xpY2s9ImNoYW5nZVRhYlN1Ym1lbnUoJ3NldHRpbmdzcHJvZmlsZScpIj5Qcm9maWxlPC9hPgoJCTxhIGhyZWY9Ii9zZXR0aW5ncy8jc2V0dGluZ3NhdXRoZW50aWNhdGlvbiIgb25jbGljaz0iY2hhbmdlVGFiU3VibWVudSgnc2V0dGluZ3NhdXRoZW50aWNhdGlvbicpIj5BdXRoZW50aWNhdGlvbjwvYT4KCQk8YSBocmVmPSIvc2V0dGluZ3MvI3NldHRpbmdzYXBpIiBvbmNsaWNrPSJjaGFuZ2VUYWJTdWJtZW51KCdzZXR0aW5nc2FwaScpIj5BUEk8L2E+CgkJPGEgaHJlZj0iL3NldHRpbmdzLyNzZXR0aW5nc3VzZXJzIiBvbmNsaWNrPSJjaGFuZ2VUYWJTdWJtZW51KCdzZXR0aW5nc3VzZXJzJykiPlVzZXJzPC9hPgoJCTxhIGhyZWY9Ii9zZXR0aW5ncy8jc2V0dGluZ3Nub3RpZmljYXRpb25zIiBvbmNsaWNrPSJjaGFuZ2VUYWJTdWJtZW51KCdzZXR0aW5nc25vdGlmaWNhdGlvbnMnKSI+Tm90aWZpY2F0aW9uczwvYT4KCQk8aHIvPgoJCTxhIGhyZWY9Ii8/bG9nb3V0PTEiPkxvZ291dDwvYT4=">
+            Welcome back, Le Van Hai!
+        </a>
+    </div>
+
+ 
+
+
+
+  {{{body}}}
+
+
+   
+    <!-- Scripts -->
+    <script src="/javascripts/jquery-1.10.2.js"></script>
+    
+    <script src="/javascripts/vultr/jquery.flot.js"></script>
+    <script src="/javascripts/vultr/jquery.flot.time.js"></script>
+    <script src="/javascripts/vultr/jquery.flot.stack.js"></script>
+    <script src="/javascripts/vultr/form.authy.js"></script>
+    <script src="/javascripts/vultr/select2.min.js"></script>
+    <script src="/javascripts/vultr/global.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script>
+        var csrf_token = "p/LVSWH4jD3nzUOOhdHl/fpQylYCtu3WexYXGfoour4=";
+        $(document).ready(function () {
+
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setTimeout("$('#affiliatebanner').slideDown(200, 'linear')", 500);
+        });
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var server_time = 1525147949;
+            var local_time = Math.floor(new Date().getTime() / 1000);
+
+            var cookie_name = 'PHPSESSID_login_expire';
+
+            var time_sane = (local_time >= (server_time - 60)) && (local_time <= (server_time + 60));
+
+            if (time_sane) {
+                setInterval(function () {
+                    inactivity_check(cookie_name);
+                },
+                    60000);
+            }
+        });
+
+    </script>
+    <script>
+        var massaction_started_at = "";
+        var massaction_finished_desc = "";
+        $(function () {
+            setTimeout(subscriptionsCheckStatus, 15000);
+            setTimeout(subscriptionCheckMassAction, 15000);
+        });
+
+        function checkUncheckAll(node) {
+            $('input[name="massaction[]"]').prop('checked', $(node).prop('checked'));
+        }
+        function confirmMassRestart() {
+            if ($('input[name="massaction[]"]:checked').length == 0) {
+                okDialogShow('UGxlYXNlIHNlbGVjdCBhdCBsZWFzdCBvbmUgc2VydmVyIHRvIHJlc3RhcnQu');
+                return;
+            }
+            $('#massactionform input[name=action]').val('restart');
+            confirmDialogShow('QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIHJlc3RhcnQgdGhlc2Ugc2VydmVycz8gVGhpcyBpcyBhIEhBUkQgcmVzdGFydC4=', document.getElementById('massactionform'));
+        }
+        function confirmMassStop() {
+            if ($('input[name="massaction[]"]:checked').length == 0) {
+                okDialogShow('UGxlYXNlIHNlbGVjdCBhdCBsZWFzdCBvbmUgc2VydmVyIHRvIHN0b3Au');
+                return;
+            }
+            $('#massactionform input[name=action]').val('stop');
+            confirmDialogShow('CglBcmUgeW91IHN1cmUgeW91IHdhbnQgdG8gc3RvcCB0aGVzZSBzZXJ2ZXJzPwoJVGhpcyB3aWxsIGhhcmQgcG93ZXIgb2ZmIGFsbCBzZWxlY3RlZCBzZXJ2ZXJzLgoJWW91IHdpbGwgbmVlZCB0byBzdGFydCB0aGVtIGFnYWluIHZpYSB0aGUgcmVzdGFydCBidXR0b24uCgk8ZGl2IGNsYXNzPSJhbGVydCBhbGVydC1pbmZvIiBzdHlsZT0ibWFyZ2luLXRvcDoxMHB4OyI+CgkJPGRpdj4KCQkJTk9URTogU3RvcHBlZCBpbnN0YW5jZXMgY29udGludWUgdG8gaW5jdXIgY2hhcmdlcy4gSWYgeW91IHdhbnQgdG8gc3RvcCBjaGFyZ2VzLCBERVNUUk9ZIHlvdXIgc2VydmVyLiA8YSBocmVmPSIvc3VwcG9ydC8ja25vd2xlZGdlYmFzZSI+Rm9yIG1vcmUgaW5mb3JtYXRpb24sIHBsZWFzZSB2aWV3IG91ciBGQVE8L2E+LgoJCTwvZGl2PgoJPC9kaXY+', document.getElementById('massactionform'));
+        }
+
+        function serverStopBM(SUBID) {
+            $('#serveractionbm input[name=SUBID]').val(SUBID);
+            $('#serveractionbm input[name=action]').val('stop');
+            $('#serveractionbm').attr('action', '/subs/?SUBID=' + SUBID);
+
+            confirmDialogShow('QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIHN0b3AgeW91ciBzZXJ2ZXI/IFRoaXMgd2lsbCBoYXJkIHBvd2VyIG9mZiB0aGUgc2VydmVyLiBZb3Ugd2lsbCBuZWVkIHRvIHN0YXJ0IHRoZSBzZXJ2ZXIgYWdhaW4gdmlhIHRoZSByZXN0YXJ0IGJ1dHRvbi4=', document.getElementById('serveractionbm'));
+        }
+
+        function serverRestartBM(SUBID) {
+            $('#serveractionbm input[name=SUBID]').val(SUBID);
+            $('#serveractionbm input[name=action]').val('restart');
+            $('#serveractionbm').attr('action', '/subs/?SUBID=' + SUBID);
+
+            confirmDialogShow('QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIHJlc3RhcnQgeW91ciBzZXJ2ZXI/IFRoaXMgaXMgYSBIQVJEIHJlc3RhcnQu', document.getElementById('serveractionbm'));
+        }
+
+        function serverReinstallBM(SUBID) {
+            $('#serveractionbm input[name=SUBID]').val(SUBID);
+            $('#serveractionbm input[name=action]').val('reinstall');
+            $('#serveractionbm').attr('action', '/subs/?SUBID=' + SUBID);
+
+            superConfirmDialogShow('QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIHJlaW5zdGFsbCB5b3VyIHNlcnZlcj8gQW55IGRhdGEgb24geW91ciBzZXJ2ZXIgd2lsbCBiZSBwZXJtYW5lbnRseSBsb3N0IQ==', document.getElementById('serveractionbm'));
+        }
+
+        function serverDestroyBM(SUBID) {
+            $('#serveractionbm input[name=SUBID]').val(SUBID);
+            $('#serveractionbm input[name=action]').val('destroy');
+            $('#serveractionbm').attr('action', '/subs/?SUBID=' + SUBID);
+
+            superConfirmDialogShow('QXJlIHlvdSBzdXJlIHlvdSB3YW50IHRvIGRlc3Ryb3kgdGhpcyBzZXJ2ZXI/IEFueSBkYXRhIG9uIHlvdXIgc2VydmVyIHdpbGwgYmUgcGVybWFuZW50bHkgbG9zdCE=', document.getElementById('serveractionbm'));
+        }
+
+    </script>
+
+
+</body>
+
+</html>
