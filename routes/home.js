@@ -4,15 +4,8 @@ var api = require('../controllers/Api');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('home/index', { title: 'IOT access control', layout: 'layoutDefault' });
-});
 router.get('/home/login', function (req, res, next) {
   res.render('home/login', { title: 'IOT access control', layout: 'layoutLogin' });
-});
-
-router.get('/home/register', function (req, res, next) {
-  res.render('home/register', { title: 'IOT access control', layout: 'layoutLogin' });
 });
 
 router.get('/device', function (req, res, next) {
