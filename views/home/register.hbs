@@ -1,77 +1,76 @@
- <div style="position: absolute; top: -120px; left: 0px; width: 100%; min-height: 100%; background: linear-gradient(0deg, #0b4182 1%, #1e88e5 100%);">
-        <div class="loggedout_vcenter">
-            <div style="padding: 8px;">
-                <div style="position:relative; min-height:420px; max-width: 420px; padding:40px; background-color:#ffffff; margin-left: auto; margin-right: auto; border-radius:4px; ">
-                    <a href="/" style="display:block; height:58px; width:167px; margin:0 auto 30px auto; background-image:url(/_images/logo-onwhite.svg); background-repeat:no-repeat;"></a>
+<div style="position: absolute; top: -120px; left: 0px; width: 100%; min-height: 100%; background: linear-gradient(0deg, #0b4182 1%, #1e88e5 100%);"
+    ng-controller="homeController">
+    <div class="loggedout_vcenter">
+        <div style="padding: 8px;">
+            <div style="position:relative; min-height:420px; max-width: 420px; padding:40px; background-color:#ffffff; margin-left: auto; margin-right: auto; border-radius:4px; ">
+                <a href="/" style="display:block; height:58px; width:167px; margin:0 auto 30px auto; background-image:url(/_images/logo-onwhite.svg); background-repeat:no-repeat;"></a>
 
-                    <div id="register_header" class="textcenter">
-                        You're moments away from launching a blazing fast SSD Cloud Server. Enter your email and create a password to get started!
+                <div id="register_header" class="textcenter">
+                    You're moments away from launching a blazing fast SSD Cloud Server. Enter your email and create a password to get started!
+                </div>
+
+                <hr class="hr20">
+
+                <form method="post" id="register-form">
+
+                    <input type="hidden" name="action" value="djJ8Rk9LVWhRLXdSbzhScjlsQTNhNm04dnJIWEE4T2ZTSTh8Lb-3NgXZxGBdt7nmSbnYk1NnN2VweQ3mhV2rPrmKkD9MzEYd">
+                    <input style="display: none;" name="email" value="" autocomplete="off">
+
+                    <div class="form-group">
+                        <div class="input-icon input-icon-lg">
+                            <i class="zmdi zmdi-email"></i>
+                            <input name="9d9f36261bb4a2e48e8c184b18d7865c" value="" ng-model="user.userName" class="form-control input-lg" type="text"
+                                placeholder="Email Address" required="">
+                        </div>
                     </div>
 
-                    <hr class="hr20">
-
-                    <form method="post" id="register-form">
-
-                        <input type="hidden" name="action" value="djJ8Rk9LVWhRLXdSbzhScjlsQTNhNm04dnJIWEE4T2ZTSTh8Lb-3NgXZxGBdt7nmSbnYk1NnN2VweQ3mhV2rPrmKkD9MzEYd">
-                        <input style="display: none;" name="email" value="" autocomplete="off">
-
-                        <div class="form-group">
-                            <div class="input-icon input-icon-lg">
-                                <i class="zmdi zmdi-email"></i>
-                                <input name="9d9f36261bb4a2e48e8c184b18d7865c" value="" class="form-control input-lg" type="text" placeholder="Email Address"
-                                    required="">
-                            </div>
+                    <div class="form-group">
+                        <div class="input-icon input-icon-lg">
+                            <i class="zmdi zmdi-lock-outline"></i>
+                            <input name="password1" class="form-control input-lg" type="password" ng-model="user.password" placeholder="Password" required="">
                         </div>
-
-                        <div class="form-group">
-                            <div class="input-icon input-icon-lg">
-                                <i class="zmdi zmdi-lock-outline"></i>
-                                <input name="password1" class="form-control input-lg" type="password" placeholder="Password" required="">
-                            </div>
-                        </div>
-                        <div id="password_parameters">
-                            <img class="param_icon" id="input_length_check" src="/_images/register/warning.png">
-                            <span class="password_parameters_label"> Must have at least 10 characters.</span>
-                            <br>
-                            <img class="param_icon" id="input_lowercase_check" src="/_images/register/warning.png">
-                            <span class="password_parameters_label"> Must have at least 1 lowercase letter.</span>
-                            <br>
-                            <img class="param_icon" id="input_uppercase_check" src="/_images/register/warning.png">
-                            <span class="password_parameters_label"> Must have at least 1 uppercase letter.</span>
-                            <br>
-                            <img class="param_icon" id="input_number_check" src="/_images/register/warning.png">
-                            <span class="password_parameters_label"> Must have at least 1 number.</span>
-                        </div>
-
-                       
-                        <script src="https://www.google.com/recaptcha/api.js"></script>
-                        <div class="g-recaptcha" data-sitekey="6LdKkyUTAAAAANjMz4doaiLS7m1pZ3QYMeecOBa4">
-                            <div style="width: 304px; height: 78px;">
-                                <div>
-                                    <iframe src="https://www.google.com/recaptcha/api2/anchor?k=6LdKkyUTAAAAANjMz4doaiLS7m1pZ3QYMeecOBa4&amp;co=aHR0cHM6Ly93d3cudnVsdHIuY29tOjQ0Mw..&amp;hl=en&amp;v=v1524685466525&amp;size=normal&amp;cb=fsssrlgxcfg5"
-                                        width="304" height="78" role="presentation" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
-                                </div>
-                                <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response"
-                                    style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea>
-                            </div>
-                        </div>
-                        <noscript>
-                            <b>Javascript is required to log in.</b>
-                        </noscript>
-                        <hr class="hr15">
-
-                        <button id="register_submit_button" class="btn btn-block btn-primary" type="submit">Create Account</button>
-
-                        
-                    </form>
-
-                    <hr class="hr10">
-
-                    <div class="textcenter">
-                        Already a member?
-                        <a href="https://my.vultr.com">Log In</a>
                     </div>
+                    {{!--
+                    <div id="password_parameters">
+                        <img class="param_icon" id="input_length_check" src="/_images/register/warning.png">
+                        <span class="password_parameters_label"> Must have at least 10 characters.</span>
+                        <br>
+                        <img class="param_icon" id="input_lowercase_check" src="/_images/register/warning.png">
+                        <span class="password_parameters_label"> Must have at least 1 lowercase letter.</span>
+                        <br>
+                        <img class="param_icon" id="input_uppercase_check" src="/_images/register/warning.png">
+                        <span class="password_parameters_label"> Must have at least 1 uppercase letter.</span>
+                        <br>
+                        <img class="param_icon" id="input_number_check" src="/_images/register/warning.png">
+                        <span class="password_parameters_label"> Must have at least 1 number.</span>
+                    </div> --}} {{!--
+                    <script src="https://www.google.com/recaptcha/api.js"></script>
+                    <div class="g-recaptcha" data-sitekey="6LdKkyUTAAAAANjMz4doaiLS7m1pZ3QYMeecOBa4">
+                        <div style="width: 304px; height: 78px;">
+                            <div>
+                                <iframe src="https://www.google.com/recaptcha/api2/anchor?k=6LdKkyUTAAAAANjMz4doaiLS7m1pZ3QYMeecOBa4&amp;co=aHR0cHM6Ly93d3cudnVsdHIuY29tOjQ0Mw..&amp;hl=en&amp;v=v1524685466525&amp;size=normal&amp;cb=fsssrlgxcfg5"
+                                    width="304" height="78" role="presentation" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+                            </div>
+                            <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea>
+                        </div>
+                    </div> --}}
+                    <noscript>
+                        <b>Javascript is required to log in.</b>
+                    </noscript>
+                    <hr class="hr15">
+
+                    <button id="register_submit_button" class="btn btn-block btn-primary" type="submit" ng-click="userRegister()">Create Account</button>
+
+
+                </form>
+
+                <hr class="hr10">
+
+                <div class="textcenter">
+                    Already a member?
+                    <a href="/home/login">Log In</a>
                 </div>
             </div>
         </div>
     </div>
+</div>

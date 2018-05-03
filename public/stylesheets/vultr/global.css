@@ -2425,7 +2425,9 @@ i[class="sp-white"] {
 .loggedout_vcenter { margin: 120px 0px; }
 @media (min-width: 768px) and (min-height: 700px)
 {
-	.loggedout_vcenter { position: absolute; top: 50%; width: 100%; margin-top: -220px; }
+	.loggedout_vcenter { position: absolute; top: 50%; width: 100%; 
+		/* margin-top: -220px; } */
+		}
 }
 
 .hidden { display: none; }

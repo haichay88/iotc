@@ -11,9 +11,6 @@ router.get('/home/login', function (req, res, next) {
   res.render('home/login', { title: 'IOT access control', layout: 'layoutLogin' });
 });
 
-router.get('/home/register', function (req, res, next) {
-  res.render('home/register', { title: 'IOT access control', layout: 'layoutLogin' });
-});
 
 router.get('/device', function (req, res, next) {
  

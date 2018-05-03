@@ -1,19 +1,21 @@
-<div style="position: absolute; top: -120px; left: 0px; width: 100%; min-height: 100%; background: linear-gradient(0deg, #0b4182 1%, #1e88e5 100%);">
-				<div class="loggedout_vcenter">
-						<div style="padding: 8px;">
-				<div style="min-height:420px; max-width: 420px; padding:40px; background-color:#ffffff; margin-left: auto; margin-right: auto; border-radius:4px; overflow-x: hidden;">
-					<a href="/" style="display:block; height:58px; width:167px; margin:0 auto 30px auto; background-image:url(/_images/logo_onwhite.png); background-size: auto 30px; background-repeat:no-repeat;"></a>
-											<form method="post">
-		<input type="hidden" name="action" value="djJ8cGJoQktOcUVVMWJ1MnJtY0ZjYnNzVUV5NTF0NjJ0Wi18QOu-eR0byi4gW4YSwv5l49EzUqK5kLdcPisa8TTfPYqD">
-		<input name="username" type="text" style="width:100%;" placeholder="Email Address" value="lehaile37@gmail.com" required="required" autofocus="">
-		<hr class="hr15">
-		<input name="password" type="password" style="width:100%;" placeholder="Password" required="required">
-		<hr class="hr15">
-				<input type="submit" value="Login" style="width:100%;" onclick="this.disabled = true; this.form.submit();  this.value = 'Logging in...'">
-		<hr class="hr20">
-		Help, I <a href="/forgot_password/">forgot my password</a>
-	</form>
-				</div>
+<div style="position: absolute;  left: 0px; width: 100%; min-height: 100%; background: linear-gradient(0deg, #0b4182 1%, #1e88e5 100%);"
+ ng-controller="homeController">
+	<div class="loggedout_vcenter">
+		<div style="padding: 8px;">
+			<div style="min-height:420px; max-width: 420px; padding:40px; background-color:#ffffff; margin-left: auto; margin-right: auto; border-radius:4px; overflow-x: hidden;">
+				<a href="/" style="display:block; height:58px; width:167px; margin:0 auto 30px auto; background-image:url(/_images/logo_onwhite.png); background-size: auto 30px; background-repeat:no-repeat;"></a>
+				<form>
+					<input type="hidden" name="action" value="djJ8cGJoQktOcUVVMWJ1MnJtY0ZjYnNzVUV5NTF0NjJ0Wi18QOu-eR0byi4gW4YSwv5l49EzUqK5kLdcPisa8TTfPYqD">
+					<input name="username" type="text" ng-model="user.userName" style="width:100%;" placeholder="Email Address" value="lehaile37@gmail.com"
+					 required="required" autofocus="">
+					<hr class="hr15">
+					<input name="password" type="password" style="width:100%;" ng-model="user.password" placeholder="Password" required="required">
+					<hr class="hr15">
+					<input type="button" value="Login" ng-click="userLogin()" style="width:100%;" onclick="this.disabled = true;   this.value = 'Logging in...'">
+					<hr class="hr20"> Help, I
+					<a href="/forgot_password/">forgot my password</a>
+				</form>
 			</div>
 		</div>
 	</div>
+</div>
