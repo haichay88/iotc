@@ -53,12 +53,9 @@ app.controller("homeController", function ($scope, homeService) {
         promiseGet.then(function (pl) {
             if (pl.data) {
                 if (pl.data.statusCode == 200) {
-                    window.location = "/";
+                    window.location = "/device";
                 }
 
-
-
-                //toastr.error(pl.data.Message)
             }
 
         },

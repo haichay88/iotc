@@ -26,6 +26,10 @@ homeRouter.post('/register', function (req, res, next) {
 homeRouter.post('/login', function (req, res, next) {
   req.body.password = md5(req.body.password);
   api.userLogin(req.body, function (data) {
+    console.log(data);
+
+    req.session.user=data.data;
+   
     res.json(data);
   });
 
