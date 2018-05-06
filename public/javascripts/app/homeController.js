@@ -27,6 +27,37 @@ app.service("homeService", function ($http) {
         return request;
     };
 
+
+    this.addDevice = function (data) {
+        var request = $http({
+            method: "post",
+            url: "/device/add",
+            contentType: "application/json; charset=UTF-8",
+            data: data
+        });
+        return request;
+    };
+
+    this.getDevices = function () {
+        var request = $http({
+            method: "get",
+            url: "/device/getDevices",
+            contentType: "application/json; charset=UTF-8",
+            
+        });
+        return request;
+    };
+
+    this.updateDevice = function () {
+        var request = $http({
+            method: "get",
+            url: "/device/updateDevice",
+            contentType: "application/json; charset=UTF-8",
+            
+        });
+        return request;
+    };
+
 });
 
 app.controller("homeController", function ($scope, homeService) {
@@ -62,6 +93,60 @@ app.controller("homeController", function ($scope, homeService) {
             function (errorPl) {
             });
     };
+
+    $scope.addDevice = function () {
+
+        var promiseGet = homeService.addDevice($scope.device);
+        promiseGet.then(function (pl) {
+            if (pl.data) {
+                if (pl.data.statusCode == 200) {
+                    window.location = "/device";
+                }
+
+            }
+
+        },
+            function (errorPl) {
+            });
+    };
+
+
+    $scope.getDevices = function () {
+
+        var promiseGet = homeService.getDevices();
+        promiseGet.then(function (pl) {
+           
+            if (pl.data) {
+                if (pl.data.statusCode == 200) {
+                    $scope.devices=JSON.parse( pl.data.data);
+
+                }
+
+            }
+
+        },
+            function (errorPl) {
+            });
+    };
+
+    $scope.updateDevice = function () {
+
+        var promiseGet = homeService.updateDevice();
+        promiseGet.then(function (pl) {
+           
+            if (pl.data) {
+                if (pl.data.statusCode == 200) {
+                    $scope.devices=JSON.parse( pl.data.data);
+
+                }
+
+            }
+
+        },
+            function (errorPl) {
+            });
+    };
+
 
     $scope.loadStatic = function () {
 

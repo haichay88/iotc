@@ -2,7 +2,7 @@ var express = require('express');
 var md5 = require('md5');
 var api = require('../controllers/Api');
 var homeRouter = express.Router();
-
+var dateExpire = 360 * 24 * 3600 * 1000;
 
 /* GET home page. */
 homeRouter.get('/login', function (req, res, next) {
@@ -26,10 +26,15 @@ homeRouter.post('/register', function (req, res, next) {
 homeRouter.post('/login', function (req, res, next) {
   req.body.password = md5(req.body.password);
   api.userLogin(req.body, function (data) {
-    console.log(data);
 
-    req.session.user=data.data;
-   
+    var response = data;
+    
+    if (response.statusCode == 200) {
+      if (!req.cookies.us) {
+        res.cookie('us', response.data, { httpOnly: true, maxAge: dateExpire });
+      }
+    }
+
     res.json(data);
   });
 

@@ -1,53 +1,42 @@
-   <div id="header2_wrap">
-        <div id="header2_left">
-            <h1>
-                Devices
-            </h1>
-        </div>
-        <div id="header2_right">
-            <form method="post">
-                <input type="hidden" name="csrf_token" value="p/LVSWH4jD3nzUOOhdHl/fpQylYCtu3WexYXGfoour4="> Sort by: &nbsp;
-                <select name="sort" onchange="this.parentNode.submit();" style="width:200px;" data-xselect2="yes" data-minimum-results-for-search="-1"
-                    tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
-                    <option value="label">Label</option>
-                    <option value="location" selected="selected">Location</option>
-                    <option value="tag">Tag</option>
-                    <option value="date_created_desc">Date Created</option>
-                </select>
-                
-            </form>
-        </div>
+<div id="header2_wrap">
+    <div id="header2_left">
+        <h1>
+            Devices
+        </h1>
     </div>
+    <div id="header2_right">
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="p/LVSWH4jD3nzUOOhdHl/fpQylYCtu3WexYXGfoour4="> Sort by: &nbsp;
+            <select name="sort" onchange="this.parentNode.submit();" style="width:200px;" data-xselect2="yes" data-minimum-results-for-search="-1"
+                tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                <option value="label">Label</option>
+                <option value="location" selected="selected">Location</option>
+                <option value="tag">Tag</option>
+                <option value="date_created_desc">Date Created</option>
+            </select>
 
-<div class="block1290">
+        </form>
+    </div>
+</div>
+
+<div class="block1290" ng-Controller="homeController">
 
     <a class="button" href="/device/add/">Add device</a>
     <hr class="hr30">
 
-    <div class="responsivetable responsivetable_snapshots">
+    <div class="responsivetable responsivetable_snapshots" ng-init="getDevices()">
         <div>
             <span>
                 Name
             </span>
             <span>
-                OS
+                Seri
             </span>
-            <span>
-                Size
-            </span>
-            <span>
-                Cost
-            </span>
-            <span>
-                Date
-            </span>
-            <span>
-                Status
-            </span>
+           
             <span>
             </span>
         </div>
-        <div>
+        <div ng-show="devices.length<=0">
             <span>
                 No Snapshots
             </span>
@@ -55,14 +44,18 @@
             </span>
             <span>
             </span>
+            
+        </div>
+
+        <div ng-repeat="item in devices">
+            <a href="/device/action?deviceId={[{item._id}]}" ng-bind="item.name"></a>
+            
+             <a href="/device/action" ng-bind="item.seri"></a>
+            
+          
             <span>
             </span>
-            <span>
-            </span>
-            <span>
-            </span>
-            <span>
-            </span>
+           
         </div>
     </div>
     <form method="POST" id="deletesnapshot">
@@ -86,7 +79,7 @@
     </ul>
 
 
-   
+
     <script>
 
         // Mobile default variables.
@@ -251,8 +244,8 @@
                         'margin-top': '0px',
                         'opacity': '0',
                     }, 200, function () {
-                            $(this).hide();
-                        });
+                        $(this).hide();
+                    });
                 ;
             }
 
@@ -377,8 +370,8 @@
                         'margin-top': '0px',
                         'opacity': '0',
                     }, 200, function () {
-                            $(this).hide();
-                        });
+                        $(this).hide();
+                    });
                 ;
             }
 
@@ -481,8 +474,8 @@
                         'margin-top': '0px',
                         'opacity': '0',
                     }, 200, function () {
-                            $(this).hide();
-                        });
+                        $(this).hide();
+                    });
                 ;
             }
 
@@ -548,5 +541,5 @@
         </div>
     </div>
 
-   
+
 </div>

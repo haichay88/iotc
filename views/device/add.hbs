@@ -15,12 +15,12 @@
 	</div>
 
 	<div class="container-fluid" style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
-	<a class="deploy_floating" href="/deploy/" title="" aria-label="Deploy New Server" data-popup2="RGVwbG95IE5ldyBTZXJ2ZXI=" data-original-title="Deploy New Server">
+	<a class="deploy_floating" href="#" title="" aria-label="Deploy New Server" data-popup2="RGVwbG95IE5ldyBTZXJ2ZXI=" data-original-title="Deploy New Server">
 		<span class="fonticon_plus"></span>
 	</a>
 </div>
 </div>
-<div class="block1290">
+<div class="block1290" ng-controller="homeController">
 		
 	<div class="block520center">
 		<form method="post">
@@ -28,14 +28,14 @@
 			<input type="hidden" name="action" value="adddomain">
 			<label class="floatinglabel flexwidth100">
 				<span style="display: none;">Name</span>
-				<input type="text" name="domain" value="" placeholder="Name device">
+				<input type="text" name="domain" ng-model="device.name" value="" placeholder="Name device">
 			</label>
 			<label class="floatinglabel flexwidth100">
 				<span style="display: none;">Seri number</span>
-				<input type="text" name="serverip" value="" placeholder="Seri number">
+				<input type="text" name="serverip" value="" ng-model="device.seri" placeholder="Seri number">
 			</label>
 			<hr class="hr10">
-			<input type="submit" value="Add" class="flexwidth100">
+			<input type="button" value="Add" class="flexwidth100" ng-click="addDevice()">
 		</form>
 	</div>
 
