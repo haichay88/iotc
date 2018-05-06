@@ -21,15 +21,29 @@ router.get('/', checkSignIn, function (req, res) {
 
   res.render('device/list', { title: 'IOT access control', layout: 'layoutAdmin' });
 });
-router.get('/action', checkSignIn, function (req, res) {
-
-    res.render('device/action', { title: 'IOT access control', layout: 'layoutAdmin' });
+router.get('/action/:deviceId', checkSignIn, function (req, res) {
+  var user = {
+    deviceId: req.params.deviceId
+  };
+  console.log(user);
+  api.getDevice(user, function (data) {
+  
+    var response=JSON.parse(data.data);
+    console.log(response);
+    res.render('device/action',
+      {
+        title: 'IOT access control',
+        layout: 'layoutAdmin',
+        data: response
+      });
   });
+
+});
 
 router.get('/getDevices', function (req, res) {
 
   var user = req.cookies.us;
-  api.getDevice(user, function (data) {
+  api.getDevices(user, function (data) {
 
     res.json(data);
   });

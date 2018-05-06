@@ -13,8 +13,8 @@
 					Manage device
 				</h1>
 				<ul class="header-title-info" style="">
-					<li>Name: <b>2tubenow.com</b></li>
-					<li>Seri: <b>5</b></li>
+					<li>Name: <b>{{data.name}}</b></li>
+					<li>Seri: <b>{{data.seri}}</b></li>
 					{{!-- <li>Created: <b><div style="display: inline-block; cursor:pointer;" data-popup2="YSBtb250aCBhZ28gKFVUQyk=" data-original-title="" title="">2018-04-03 13:35:45</div></b></li> --}}
 				</ul>
 				<div class="header-toolbar">
@@ -59,7 +59,7 @@
             </div>
             <div style="float: left;">
                 <input type="hidden" name="action" value="togglednssec">
-                <input type="checkbox" name="dnssec_toggle" id="dnssec_toggle" ng-model="" class="checkboxtoggleenabledisable">
+                <input type="checkbox" name="dnssec_toggle" id="dnssec_toggle" class="checkboxtoggleenabledisable">
                 <label for="dnssec_toggle" style="margin: 0px 0px;" ng-click="updateDevice()">
                 </label>
             </div>
