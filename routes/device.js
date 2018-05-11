@@ -1,5 +1,6 @@
 var express = require('express');
 
+
 var api = require('../controllers/Api');
 var router = express.Router();
 
@@ -27,8 +28,8 @@ router.get('/action/:deviceId', checkSignIn, function (req, res) {
   };
   console.log(user);
   api.getDevice(user, function (data) {
-  
-    var response=JSON.parse(data.data);
+
+    var response = JSON.parse(data.data);
     console.log(response);
     res.render('device/action',
       {

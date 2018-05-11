@@ -13,6 +13,8 @@ var deviceRouter = require('./routes/device');
 
 var app = express();
 
+var server = require("http").createServer(app);
+var io = require('socket.io').listen(server);
 // view engine setup
 app.engine('.hbs',exphbs({defaultlayout:'layout',
 extname:'.hbs',
@@ -40,6 +42,32 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+
+
+io.on("connection", function (socket) {
+  console.log("user connected " + socket.id);
+  socket.on('disconnect',function(){
+    
+    console.log("user disconnected " + socket.id);
+  });
+
+
+  socket.on('getstatic',function(data){
+    console.log('da nghe yeu cau getstatic'+ data);
+    socket.emit('Server send static',"data nè");
+    
+  });
+
+  socket.on('update-static',function(data){
+    console.log('da nghe yeu cau update-static'+data);
+    socket.emit('Server send static',"data nè");
+    
+  });
+
+
+});
+
+
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
@@ -50,11 +78,12 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 
-  // listen for requests
-  // app.listen(6000, function () {
-  //   console.log("Server is listening on port 1000");
-  // });
+  
 
+});
+// listen for requests
+server.listen(5000, function(){
+  console.log('listening on *:3000');
 });
 
 module.exports = app;

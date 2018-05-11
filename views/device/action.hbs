@@ -50,7 +50,7 @@
 	</div>
 
 </div>
-<div class="block1290" >
+<div class="block1290" ng-init="getStatic()">
 
     <div class="block520center">
         <div class="flexwidth2thirds">
@@ -60,7 +60,7 @@
             <div style="float: left;">
                 <input type="hidden" name="action" value="togglednssec">
                 <input type="checkbox" name="dnssec_toggle" id="dnssec_toggle" class="checkboxtoggleenabledisable">
-                <label for="dnssec_toggle" style="margin: 0px 0px;" ng-click="updateDevice()">
+                <label for="dnssec_toggle" style="margin: 0px 0px;" ng-click="updateStatic()">
                 </label>
             </div>
             <div style="clear: both;"></div>

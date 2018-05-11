@@ -75,6 +75,7 @@
 
    
     <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/javascripts/jquery-1.10.2.js"></script>
     
     <script src="/javascripts/vultr/jquery.flot.js"></script>
@@ -85,7 +86,7 @@
     <script src="/javascripts/vultr/global.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
 
-
+    
      <script src="/javascripts/angular.min.js"></script>
     
     <script src="/javascripts/app/module.js"></script>
@@ -105,6 +106,8 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+        var socket = io("http://localhost:5000");
+
             var server_time = 1525147949;
             var local_time = Math.floor(new Date().getTime() / 1000);
 

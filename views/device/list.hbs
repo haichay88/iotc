@@ -48,7 +48,7 @@
         </div>
 
         <div ng-repeat="item in devices">
-            <a href="/device/action?deviceId={[{item._id}]}" ng-bind="item.name"></a>
+            <a href="/device/action/{[{item._id}]}" ng-bind="item.name"></a>
             
              <a href="/device/action" ng-bind="item.seri"></a>
             

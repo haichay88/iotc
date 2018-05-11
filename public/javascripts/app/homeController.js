@@ -1,3 +1,5 @@
+
+
 app.service("homeService", function ($http) {
     this.userRegister = function (data) {
         var request = $http({
@@ -43,7 +45,7 @@ app.service("homeService", function ($http) {
             method: "get",
             url: "/device/getDevices",
             contentType: "application/json; charset=UTF-8",
-            
+
         });
         return request;
     };
@@ -53,14 +55,15 @@ app.service("homeService", function ($http) {
             method: "get",
             url: "/device/updateDevice",
             contentType: "application/json; charset=UTF-8",
-            
+
         });
         return request;
     };
 
 });
 
-app.controller("homeController", function ($scope, homeService) {
+app.controller("homeController", function ($scope, homeService, socket) {
+
 
     $scope.userRegister = function () {
 
@@ -115,10 +118,10 @@ app.controller("homeController", function ($scope, homeService) {
 
         var promiseGet = homeService.getDevices();
         promiseGet.then(function (pl) {
-           
+
             if (pl.data) {
                 if (pl.data.statusCode == 200) {
-                    $scope.devices=JSON.parse( pl.data.data);
+                    $scope.devices = JSON.parse(pl.data.data);
 
                 }
 
@@ -133,10 +136,10 @@ app.controller("homeController", function ($scope, homeService) {
 
         var promiseGet = homeService.updateDevice();
         promiseGet.then(function (pl) {
-           
+
             if (pl.data) {
                 if (pl.data.statusCode == 200) {
-                    $scope.devices=JSON.parse( pl.data.data);
+                    $scope.devices = JSON.parse(pl.data.data);
 
                 }
 
@@ -167,4 +170,18 @@ app.controller("homeController", function ($scope, homeService) {
             function (errorPl) {
             });
     };
+
+
+    $scope.getStatic = function () {
+var serinumber ='serinumber';
+        socket.emit('getstatic', serinumber);
+    };
+
+    $scope.updateStatic = function () {
+        var static = 'on';
+        socket.emit('update-static', static);
+    };
+    socket.on('Server send static', function (data) {
+        console.log(data);
+    });
 });
