@@ -184,7 +184,7 @@ var serinumber ='serinumber';
         };
         socket.emit('update-static', static);
     };
-    socket.on('Server send static', function (data) {
+    socket.on('Server-send-static', function (data) {
         console.log(data);
     });
 });
