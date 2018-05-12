@@ -179,7 +179,7 @@ var serinumber ='serinumber';
 
     $scope.updateStatic = function () {
         var static ={
-            data:'on'
+            Command: "R1ONN"
         };
         socket.emit('update-static', static);
     };
