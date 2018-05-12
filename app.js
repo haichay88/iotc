@@ -60,14 +60,14 @@ io.on("connection", function (socket) {
 
   socket.on('update-static',function(data){
     console.log('da nghe yeu cau update-static'+data);
-    socket.emit('Server send static',"data nè");
+    socket.emit('Server-send-static',data);
     
   });
 
   socket.on('thongtin',function(data){
     console.log('da nghe yeu cau thongtin');
     console.log(data);
-    //socket.emit('Server send static',"data nè");
+    
     
   });
 
