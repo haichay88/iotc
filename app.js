@@ -46,6 +46,11 @@ app.use(function (req, res, next) {
 
 io.on("connection", function (socket) {
   console.log("user connected " + socket.id);
+  var info={
+    data:"connected",
+    Id:socket.id
+  };
+  socket.emit('welcome',info);
   socket.on('disconnect',function(){
     
     console.log("user disconnected " + socket.id);
