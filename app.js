@@ -48,7 +48,7 @@ io.on("connection", function (socket) {
   socket.on('join-room',function(data){
     socket.join(data,()=>{
       console.log(data);
-      socket.to(socket.id).emit('my message', msg);
+      // socket.to(socket.id).emit('my message', );
     });
     
   });
@@ -73,8 +73,9 @@ io.on("connection", function (socket) {
 
   socket.on('update-static',function(data){
     console.log(data);
-    // io.to('room 237', 'a new user has joined the room'); 
-    socket.broadcast.emit('Server-send-static',data);
+   
+     io.to(data.Room, 'a new user has joined the room'); 
+    //socket.broadcast.emit('Server-send-static',data);
     
   });
 

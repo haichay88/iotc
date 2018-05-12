@@ -180,12 +180,13 @@ var serinumber ='serinumber';
     $scope.updateStatic = function () {
         debugger
         var static ={
-            Command: "R1ONN"
+            Command: "R1ONN",
+            Room:"abc"
         };
         socket.emit('update-static', static);
     };
     socket.on('Server-send-static', function (data) {
-        
+
         console.log(data);
     });
 });
