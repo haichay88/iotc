@@ -65,9 +65,9 @@ io.on("connection", function (socket) {
   });
 
   socket.on('thongtin',function(data){
-    console.log('da nghe yeu cau thongtin');
+    
     console.log(data);
-    socket.emit('Server-send-static',data);
+   
     
   });
 
