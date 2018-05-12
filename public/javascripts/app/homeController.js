@@ -178,6 +178,7 @@ var serinumber ='serinumber';
     };
 
     $scope.updateStatic = function () {
+        debugger
         var static ={
             Command: "R1ONN"
         };
