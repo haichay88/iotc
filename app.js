@@ -65,7 +65,7 @@ io.on("connection", function (socket) {
 
   socket.on('update-static',function(data){
     console.log(data);
-   io.sockets.emit('Server-send-static',data);
+    socket.broadcast.emit('Server-send-static',data);
     
   });
 
