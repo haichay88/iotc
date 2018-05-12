@@ -59,7 +59,7 @@ io.on("connection", function (socket) {
   });
 
   socket.on('update-static',function(data){
-    
+    console.log(data);
     socket.emit('Server-send-static',data);
     
   });
