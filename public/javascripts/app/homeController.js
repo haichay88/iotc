@@ -178,7 +178,9 @@ var serinumber ='serinumber';
     };
 
     $scope.updateStatic = function () {
-        var static = 'on';
+        var static ={
+            data:'on'
+        };
         socket.emit('update-static', static);
     };
     socket.on('Server send static', function (data) {
