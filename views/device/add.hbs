@@ -8,34 +8,61 @@
 					</a>
 				</div>
 				<h1 class="h2" style="line-height: 51px;">
-					Add device
+					Thêm mới thiết bị
 				</h1>
 			</div>
 		</div>
 	</div>
 
 	<div class="container-fluid" style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
-	<a class="deploy_floating" href="#" title="" aria-label="Deploy New Server" data-popup2="RGVwbG95IE5ldyBTZXJ2ZXI=" data-original-title="Deploy New Server">
-		<span class="fonticon_plus"></span>
-	</a>
-</div>
+		<a class="deploy_floating" href="#" title="" aria-label="Deploy New Server" data-popup2="RGVwbG95IE5ldyBTZXJ2ZXI=" data-original-title="Deploy New Server">
+			<span class="fonticon_plus"></span>
+		</a>
+	</div>
 </div>
 <div class="block1290" ng-controller="homeController">
-		
+
 	<div class="block520center">
 		<form method="post">
 			<input type="hidden" name="csrf_token" value="3QqTYRSZgG3ekftgayzsfyH7vvm6E3NUuHYfl0qdzoc=">
 			<input type="hidden" name="action" value="adddomain">
 			<label class="floatinglabel flexwidth100">
-				<span style="display: none;">Name</span>
-				<input type="text" name="domain" ng-model="device.name" value="" placeholder="Name device">
+				<span style="display: none;">Tên thiết bị</span>
+				<input type="text" name="domain" ng-model="device.name" value="" placeholder="Tên thiết bị">
+
 			</label>
 			<label class="floatinglabel flexwidth100">
 				<span style="display: none;">Seri number</span>
 				<input type="text" name="serverip" value="" ng-model="device.seri" placeholder="Seri number">
+				<span class="inputformiconoverlay">
+
+					<span class="fonticon-eye" data-original-title="Kiểm tra hợp lệ" title=""></span>
+				</span>
 			</label>
 			<hr class="hr10">
-			<input type="button" value="Add" class="flexwidth100" ng-click="addDevice()">
+			<h3>
+				Thiết bị của bạn có nhiều kênh, vui lòng thiết lập tên từng kênh
+			</h3>
+
+			<input type="hidden" name="csrf_token" >
+				
+				<label class="floatinglabel flexwidth100">
+				<span style="display: none;">Input 1</span>
+				<input type="text" name="domain" value="" placeholder="Input 1">
+
+			</label>
+			<label class="floatinglabel flexwidth100">
+				<span style="display: none;">Tên thiết bị</span>
+				<input type="text" name="domain"  value="" placeholder="Tên thiết bị">
+
+			</label>
+			<label class="floatinglabel flexwidth100">
+				<span style="display: none;">Tên thiết bị</span>
+				<input type="text" name="domain" value="" placeholder="Tên thiết bị">
+
+			</label>
+				
+			<input type="button" value="Thêm" class="flexwidth100" ng-click="addDevice()">
 		</form>
 	</div>
 

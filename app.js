@@ -2,9 +2,9 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var bodyParser  = require('body-parser');
+var bodyParser = require('body-parser');
 var logger = require('morgan');
-var exphbs  = require('express-handlebars');
+var exphbs = require('express-handlebars');
 var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,17 +16,18 @@ var app = express();
 var server = require("http").createServer(app);
 var io = require('socket.io').listen(server);
 // view engine setup
-app.engine('.hbs',exphbs({defaultlayout:'layout',
-extname:'.hbs',
+app.engine('.hbs', exphbs({
+  defaultlayout: 'layout',
+  extname: '.hbs',
 }));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
-app.use(session({secret: "iot", resave: false,saveUninitialized: true}));
+app.use(session({ secret: "iot", resave: false, saveUninitialized: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -45,45 +46,53 @@ app.use(function (req, res, next) {
 
 
 io.on("connection", function (socket) {
-  socket.on('join-room',function(data){
-    socket.join(data,()=>{
+  socket.on('join-room', function (data) {
+    socket.join(data, () => {
       console.log(data);
       // socket.to(socket.id).emit('my message', );
     });
-    
+
   });
 
   console.log("user connected " + socket.id);
-  var info={
-    data:"connected",
-    Id:socket.id
+  var info = {
+    data: "connected",
+    Id: socket.id
   };
-  socket.emit('welcome',info);
-  socket.on('disconnect',function(){
-    
+  socket.emit('welcome', info);
+  socket.on('disconnect', function () {
+
     console.log("user disconnected " + socket.id);
   });
 
 
-  socket.on('getstatic',function(data){
-    console.log('da nghe yeu cau getstatic'+ data);
-    socket.emit('Server send static',"data nè");
-    
+  socket.on('getstatic', function (data) {
+    var static = {
+      command: true
+
+    };
+    socket.emit('Server-send-static', static);
+
   });
 
-  socket.on('update-static',function(data){
+  socket.on('update-static', function (data) {
     console.log(data);
-   
-     io.to(data.Room, 'a new user has joined the room'); 
+
+    //io.to(data.Room, 'a new user has joined the room');
     //socket.broadcast.emit('Server-send-static',data);
-    
+    // var static = {
+    //   command: false
+
+    // };
+    // socket.emit('Server-send-static', static);
+
   });
 
-  socket.on('thongtin',function(data){
-    
+  socket.on('thongtin', function (data) {
+
     console.log(data);
-   
-    
+
+
   });
 
 
@@ -100,11 +109,11 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 
-  
+
 
 });
 // listen for requests
-server.listen(5000, function(){
+server.listen(5000, function () {
   console.log('listening on *:5000');
 });
 

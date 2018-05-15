@@ -173,20 +173,24 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
 
     $scope.getStatic = function () {
-var serinumber ='serinumber';
+        var serinumber = 'serinumber';
         socket.emit('getstatic', serinumber);
+       
     };
 
     $scope.updateStatic = function () {
-        debugger
-        var static ={
-            Command: "R1ONN",
-            Room:"abc"
+        
+       var a= $scope.isChecked;
+        var static = {
+            command:$scope.isChecked? "R1ONN":"R1OFF",
+            //Room: "abc"
         };
         socket.emit('update-static', static);
     };
     socket.on('Server-send-static', function (data) {
-
-        console.log(data);
+        
+        $scope.isChecked=data.command;
+        $scope.$digest();
+        console.log($scope.isChecked);
     });
 });
