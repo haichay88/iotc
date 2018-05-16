@@ -50,6 +50,15 @@ router.get('/getDevices', function (req, res) {
   });
 });
 
+router.post('/checkSeriNumber', function (req, res) {
+
+ console.log(req.body.device);
+  api.checkSeriNumber(req.body, function (data) {
+
+    res.json(data);
+  });
+});
+
 router.get('/add', function (req, res, next) {
 
   res.render('device/add', { title: 'IOT access control', layout: 'layoutAdmin' });

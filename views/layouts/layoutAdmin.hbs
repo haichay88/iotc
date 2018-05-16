@@ -35,8 +35,10 @@
 </head>
 
 <body style="">
-
- {{>menuleftV}}
+<div id="header0v_0">
+      {{>menuleftV}}
+    </div>
+ 
 
 
     <div id="header0h_0">
@@ -71,7 +73,13 @@
      {{{body}}}
 </div>
  
-
+<div id="menusidebar_block" onclick="event.stopPropagation();" style="">
+	<div id="menusidebar_hide" onclick="menusidebarHide();">
+	</div>
+	<div id="menusidebar_container">
+		{{>menuleftV}}
+	</div>
+</div>
 
    
     <!-- Scripts -->

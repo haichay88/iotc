@@ -59,12 +59,21 @@ app.service("homeService", function ($http) {
         });
         return request;
     };
-
+    this.checkSeriNumber = function (data) {
+        var request = $http({
+            method: "post",
+            url: "/device/checkSeriNumber",
+            contentType: "application/json; charset=UTF-8",
+            data: data
+        });
+        return request;
+    };
+    
 });
 
 app.controller("homeController", function ($scope, homeService, socket) {
 
-
+    $scope.model={};
     $scope.userRegister = function () {
 
         var promiseGet = homeService.userRegister($scope.user);
@@ -97,6 +106,24 @@ app.controller("homeController", function ($scope, homeService, socket) {
             });
     };
 
+    $scope.checkSeriNumber = function () {
+
+        var promiseGet = homeService.checkSeriNumber($scope.device);
+        promiseGet.then(function (pl) {
+            if (pl.data) {
+                if (pl.data.statusCode == 200) {
+                    $scope.model=  JSON.parse( pl.data.data);
+                   
+                }else{
+                    $scope.model={};
+                }
+
+            }
+
+        },
+            function (errorPl) {
+            });
+    };
     $scope.addDevice = function () {
 
         var promiseGet = homeService.addDevice($scope.device);
@@ -112,7 +139,6 @@ app.controller("homeController", function ($scope, homeService, socket) {
             function (errorPl) {
             });
     };
-
 
     $scope.getDevices = function () {
 
