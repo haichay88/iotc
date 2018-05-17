@@ -52,7 +52,7 @@ router.get('/getDevices', function (req, res) {
 
 router.post('/checkSeriNumber', function (req, res) {
 
- console.log(req.body.device);
+ console.log(req.body);
   api.checkSeriNumber(req.body, function (data) {
 
     res.json(data);
@@ -68,11 +68,10 @@ router.post('/add', function (req, res, next) {
 
 
   var user = req.cookies.us;
-
+console.log(req.body);
   var device = {
     userId: user.userId,
-    deviceName: req.body.name,
-    deviceSeri: req.body.seri,
+    devices: req.body
   };
 
   api.addDevice(device, function (data) {

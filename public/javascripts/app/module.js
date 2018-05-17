@@ -35,6 +35,10 @@ var app;
             };
         }
     ]);
+    app.config(function($interpolateProvider) {
+        $interpolateProvider.startSymbol('{[{');
+        $interpolateProvider.endSymbol('}]}');
+      });
     app.factory('socket', ['$rootScope', function($rootScope) {
         var socket = io.connect();
       
@@ -46,9 +50,6 @@ var app;
             socket.emit(eventName, data);
           }
         }}]);
-    app.config(function($interpolateProvider) {
-        $interpolateProvider.startSymbol('{[{');
-        $interpolateProvider.endSymbol('}]}');
-      });
+    
     
 })()

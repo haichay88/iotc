@@ -28,7 +28,7 @@
 			<input type="hidden" name="action" value="adddomain">
 			<label class="floatinglabel flexwidth100">
 				<span style="display: none;">Seri number</span>
-				<input type="text" name="serverip" value="" ng-model="device.seriNumber" placeholder="Seri number">
+				<input type="text" name="serverip" value="" ng-blur="checkSeriNumber()" ng-model="seriNumber" placeholder="Seri number">
 				<span class="inputformiconoverlay" ng-click="checkSeriNumber()">
 
 					<span class="fonticon-eye" data-original-title="Kiểm tra hợp lệ" title=""></span>
@@ -39,32 +39,23 @@
 				<input type="text" name="domain" ng-model="device.name" value="" placeholder="Tên thiết bị">
 
 			</label>
-			
+
 			<hr class="hr10">
-			<div ng-show="model.channelInput>1" > 
+			<div ng-show="model.channelInput>1">
+
+				<h3>
+					Thiết bị của bạn có nhiều kênh, vui lòng thiết lập tên từng kênh
+				</h3>
+
+
+
+				<label class="floatinglabel flexwidth100" ng-repeat="item in  devices">
+					<span style="display: none;">{[{item.name}]}</span>
+					<input type="text" name="domain" ng-model="item.name" value="" placeholder="{[{item.name}]}">
+
+				</label>
 				
-			<h3>
-				Thiết bị của bạn có nhiều kênh, vui lòng thiết lập tên từng kênh
-			</h3>
-
-			<input type="hidden" name="csrf_token" >
-				
-				<label class="floatinglabel flexwidth100">
-				<span style="display: none;">Input 1</span>
-				<input type="text" name="domain" value="" placeholder="Input 1">
-
-			</label>
-			<label class="floatinglabel flexwidth100">
-				<span style="display: none;">Tên thiết bị</span>
-				<input type="text" name="domain"  value="" placeholder="Tên thiết bị">
-
-			</label>
-			<label class="floatinglabel flexwidth100">
-				<span style="display: none;">Tên thiết bị</span>
-				<input type="text" name="domain" value="" placeholder="Tên thiết bị">
-
-			</label>
-				</div>
+			</div>
 			<input type="button" value="Thêm" class="flexwidth100" ng-click="addDevice()">
 		</form>
 	</div>
