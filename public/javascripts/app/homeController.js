@@ -137,11 +137,12 @@ app.controller("homeController", function ($scope, homeService, socket) {
             });
     };
     $scope.addDevice = function () {
+        debugger
         var devices = [];
         if($scope.device){
             devices.push({
                 name: $scope.device.name,
-                seri: $scope.seriumber
+                seri: $scope.seriNumber
             });
         }else{
             devices=$scope.devices;
@@ -245,7 +246,5 @@ app.controller("homeController", function ($scope, homeService, socket) {
     });
     socket.on('mymessage', function (data) {
 
-       
-        console.log(data);
     });
 });
