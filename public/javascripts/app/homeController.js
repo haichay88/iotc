@@ -218,7 +218,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
             function (errorPl) {
             });
     };
-
+ 
 
     $scope.getStatic = function () {
         debugger
