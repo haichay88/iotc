@@ -46,7 +46,7 @@ app.use(function (req, res, next) {
 
 
 io.on("connection", function (socket) {
-  socket.on('join-room', function (data) {
+  socket.on('joinrom', function (data) {
     socket.join(data, () => {
       console.log(data);
       // socket.to(socket.id).emit('my message', );

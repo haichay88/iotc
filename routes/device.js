@@ -44,6 +44,7 @@ router.get('/action/:deviceId', checkSignIn, function (req, res) {
 router.get('/getDevices', function (req, res) {
 
   var user = req.cookies.us;
+  console.log(user);
   api.getDevices(user, function (data) {
 
     res.json(data);
