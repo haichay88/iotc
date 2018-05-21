@@ -245,6 +245,6 @@ app.controller("homeController", function ($scope, homeService, socket) {
         console.log($scope.isChecked);
     });
     socket.on('mymessage', function (data) {
-
+console.log(data);
     });
 });
