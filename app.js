@@ -47,7 +47,8 @@ app.use(function (req, res, next) {
 
 io.on("connection", function (socket) {
   socket.on('joinrom', function (data) {
-    socket.join(data, () => {
+
+    socket.join(data.seri, () => {
       console.log(data);
       // socket.to(socket.id).emit('my message', );
     });
@@ -90,6 +91,9 @@ io.on("connection", function (socket) {
 
   socket.on('thongtin', function (data) {
 
+    var res= data.espsend.split('-');
+    
+    socket.to(res[0]).emit('mymessage',res[1] );
     console.log(data);
 
 

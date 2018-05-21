@@ -170,7 +170,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
             if (pl.data) {
                 if (pl.data.statusCode == 200) {
                     $scope.devices = JSON.parse(pl.data.data);
-debugger
+
                 }
 
             }
@@ -222,7 +222,7 @@ debugger
 
     $scope.getStatic = function () {
         var serinumber = 'serinumber';
-        socket.emit('getstatic', serinumber);
+        socket.emit('joinrom', serinumber);
 
     };
 
@@ -240,5 +240,10 @@ debugger
         $scope.isChecked = data.command;
         $scope.$digest();
         console.log($scope.isChecked);
+    });
+    socket.on('mymessage', function (data) {
+
+       
+        console.log(data);
     });
 });
