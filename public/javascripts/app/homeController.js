@@ -221,6 +221,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
 
     $scope.getStatic = function () {
+        debugger
         var seri=$('#seri').val();
         var serinumber ={
             seri:seri//'35367'
