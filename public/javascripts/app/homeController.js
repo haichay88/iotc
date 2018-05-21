@@ -137,7 +137,6 @@ app.controller("homeController", function ($scope, homeService, socket) {
             });
     };
     $scope.addDevice = function () {
-        debugger
         var devices = [];
         if($scope.device){
             devices.push({
@@ -222,8 +221,9 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
 
     $scope.getStatic = function () {
+        var seri=$('#seri').val();
         var serinumber ={
-            seri:'35367'
+            seri:seri//'35367'
         } ;
         socket.emit('joinrom', serinumber);
 
