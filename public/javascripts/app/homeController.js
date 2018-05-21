@@ -221,7 +221,9 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
 
     $scope.getStatic = function () {
-        var serinumber = 'serinumber';
+        var serinumber ={
+            seri:'35367'
+        } ;
         socket.emit('joinrom', serinumber);
 
     };
