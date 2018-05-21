@@ -78,7 +78,7 @@ io.on("connection", function (socket) {
 
   socket.on('update-static', function (data) {
     console.log(data);
-    socket.to(res[0]).emit('mydata',res[1] );
+    socket.to(data.seri).emit('mydata',data.command );
     //io.to(data.Room, 'a new user has joined the room');
     //socket.broadcast.emit('Server-send-static',data);
     // var static = {
