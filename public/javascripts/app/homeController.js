@@ -233,8 +233,10 @@ app.controller("homeController", function ($scope, homeService, socket) {
     $scope.updateStatic = function () {
 
         var a = $scope.isChecked;
+        var seri=$('#seri').val();
         var static = {
             command: $scope.isChecked ? "R1ONN" : "R1OFF",
+            seri:seri
             //Room: "abc"
         };
         socket.emit('update-static', static);
@@ -245,7 +247,10 @@ app.controller("homeController", function ($scope, homeService, socket) {
         $scope.$digest();
         console.log($scope.isChecked);
     });
+
     socket.on('mymessage', function (data) {
+        var res=data.split('=');
+
 console.log(data);
     });
 });
