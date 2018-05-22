@@ -23,21 +23,14 @@ router.get('/', checkSignIn, function (req, res) {
   res.render('device/list', { title: 'IOT access control', layout: 'layoutAdmin' });
 });
 router.get('/action/:deviceId', checkSignIn, function (req, res) {
-  var user = {
-    deviceId: req.params.deviceId
-  };
-  console.log(user);
-  api.getDevice(user, function (data) {
 
-    var response = JSON.parse(data.data);
-    console.log(response);
-    res.render('device/action',
-      {
-        title: 'IOT access control',
-        layout: 'layoutAdmin',
-        data: response
-      });
+  res.render('device/action',
+  {
+    title: 'IOT access control',
+    layout: 'layoutAdmin',
+    id: req.params.deviceId,
   });
+  
 
 });
 
@@ -50,6 +43,19 @@ router.get('/getDevices', function (req, res) {
     res.json(data);
   });
 });
+
+router.get('/getDevice/:deviceId', function (req, res) {
+  console.log(req.body);
+  var user = {
+    deviceId: req.params.deviceId
+  };
+  console.log(user);
+  api.getDevice(user, function (data) {
+
+    res.json(data);
+  });
+});
+
 
 router.post('/checkSeriNumber', function (req, res) {
 

@@ -50,6 +50,16 @@ app.service("homeService", function ($http) {
         return request;
     };
 
+    this.getDevice = function (val) {
+        var request = $http({
+            method: "get",
+            url: "/device/getDevice/"+val,
+            contentType: "application/json; charset=UTF-8",
+            
+        });
+        return request;
+    };
+
     this.updateDevice = function () {
         var request = $http({
             method: "get",
@@ -64,7 +74,7 @@ app.service("homeService", function ($http) {
             method: "post",
             url: "/device/checkSeriNumber",
             contentType: "application/json; charset=UTF-8",
-            data:JSON.stringify({seriNumber:data}) 
+            data: JSON.stringify({ seriNumber: data })
         });
         return request;
     };
@@ -89,7 +99,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
             function (errorPl) {
             });
     };
-
+    var inputCode = ['INPUTA', 'INPUTB', 'INPUTC', 'INPUTD', 'INPUTE']
     $scope.userLogin = function () {
 
         var promiseGet = homeService.userLogin($scope.user);
@@ -97,6 +107,23 @@ app.controller("homeController", function ($scope, homeService, socket) {
             if (pl.data) {
                 if (pl.data.statusCode == 200) {
                     window.location = "/device";
+                }
+
+            }
+
+        },
+            function (errorPl) {
+            });
+    };
+
+    $scope.getDeviceInfo = function () {
+        var seri = $('#seri').val();
+        var promiseGet = homeService.getDevice(seri);
+        promiseGet.then(function (pl) {
+            if (pl.data) {
+                if (pl.data.statusCode == 200) {
+                    //window.location = "/device";
+                    $scope.deviceInfo=JSON.parse(pl.data.data);
                 }
 
             }
@@ -117,8 +144,13 @@ app.controller("homeController", function ($scope, homeService, socket) {
                     if ($scope.model.channelInput > 1) {
                         for (let index = 0; index < $scope.model.channelInput; index++) {
                             const element = {
-                                name: "Input " + parseInt(index+1),
-                                seri: $scope.seriNumber
+                                name: "Input " + parseInt(index + 1),
+                                seri: $scope.seriNumber,
+                                channelCode: inputCode[index],
+                                isRepeat:false,
+                                repeatTime:60,
+                                isSetTime:false,
+                                setTime:'08_30'
                             };
                             devices.push(element);
                         }
@@ -138,16 +170,21 @@ app.controller("homeController", function ($scope, homeService, socket) {
     };
     $scope.addDevice = function () {
         var devices = [];
-        if($scope.device){
+        if ($scope.device) {
             devices.push({
                 name: $scope.device.name,
-                seri: $scope.seriNumber
+                seri: $scope.seriNumber,
+                channelCode: inputCode[0],
+                isRepeat:false,
+                repeatTime:60,
+                isSetTime:false,
+                setTime:'08_30'
             });
-        }else{
-            devices=$scope.devices;
+        } else {
+            devices = $scope.devices;
         }
-       
-        
+
+
         var promiseGet = homeService.addDevice(devices);
         promiseGet.then(function (pl) {
             if (pl.data) {
@@ -199,33 +236,12 @@ app.controller("homeController", function ($scope, homeService, socket) {
     };
 
 
-    $scope.loadStatic = function () {
-
-
-        var promiseGet = testService.getStatic();
-        promiseGet.then(function (pl) {
-            debugger
-            if (pl.data) {
-
-                var data = JSON.parse(pl.data);
-                $scope.lam1 = data[0].lam1 == '1' ? true : false;
-                $scope.lam2 = data[0].lam2 == '1' ? true : false;
-                $scope.lam3 = data[0].lam3 == '1' ? true : false;
-                $scope.lam4 = data[0].lam4 == '1' ? true : false;
-            }
-
-        },
-            function (errorPl) {
-            });
-    };
- 
 
     $scope.getStatic = function () {
-        debugger
-        var seri=$('#seri').val();
-        var serinumber ={
-            seri:seri//'35367'
-        } ;
+       
+        var serinumber = {
+            seri: $scope.deviceInfo.seri//'35367'
+        };
         socket.emit('joinrom', serinumber);
 
     };
@@ -233,10 +249,11 @@ app.controller("homeController", function ($scope, homeService, socket) {
     $scope.updateStatic = function () {
 
         var a = $scope.isChecked;
-        var seri=$('#seri').val();
+      
         var static = {
             command: $scope.isChecked ? "R1ONN" : "R1OFF",
-            seri:seri
+            seri: $scope.deviceInfo.seri,
+            channelCode: $scope.deviceInfo.channelCode
             //Room: "abc"
         };
         socket.emit('update-static', static);
@@ -249,8 +266,8 @@ app.controller("homeController", function ($scope, homeService, socket) {
     });
 
     socket.on('mymessage', function (data) {
-        var res=data.split('=');
+        var res = data.split('=');
 
-console.log(data);
+        console.log(data);
     });
 });

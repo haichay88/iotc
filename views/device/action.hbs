@@ -1,6 +1,7 @@
 <div ng-controller="homeController">
-
-	<div class="app-header" style="margin-bottom: 15px;" ng-init="getStatic()" >
+<input type="hidden" id="seri" value="{{id}}">
+	<div class="app-header" style="margin-bottom: 15px;" ng-init="getDeviceInfo()" >
+		
 		<div id="header2_wrap">
 			<div class="header-top header-top-toolbar">
 				<div class="header-title header-title-avatar">
@@ -14,11 +15,11 @@
 					</h1>
 					<ul class="header-title-info" style="">
 						<li>Tên thiết bị:
-							<b>{{data.name}}</b>
+							<b ng-bind="deviceInfo.name"></b>
 						</li>
 						<li>Seri:
-							<b>{{data.seri}}</b>
-							<input type="hidden" id="seri" value="{{data.seri}}">
+							<b ng-bind="deviceInfo.seri"></b>
+							
 						</li>
 						{{!--
 						<li>Created:
@@ -112,7 +113,7 @@
 					</h3>
 					<label class="floatinglabel flexwidthhalf">
 						<span style="display: none;">Tên thiết bị</span>
-						<input type="text" name="domain" value="{{data.name}}" placeholder="Tên thiết bị">
+						<input type="text" name="domain" ng-model="deviceInfo.name" placeholder="Tên thiết bị">
 
 					</label>
 					<input type="button" value="Thay đổi" class="flexwidth1third responsivefullwidthmr10">
