@@ -66,6 +66,36 @@ router.post('/checkSeriNumber', function (req, res) {
   });
 });
 
+router.post('/updateDevice', function (req, res) {
+
+  console.log(req.body);
+  var user = req.cookies.us;
+  var device = {
+    userId: user.userId,
+    device: req.body
+  };
+   api.updateDevice(device, function (data) {
+ 
+     res.json(data);
+   });
+ });
+
+
+ router.post('/deleteDevice', function (req, res) {
+
+  console.log(req.body);
+  var user = req.cookies.us;
+  var device = {
+    userId: user.userId,
+    device: req.body
+  };
+   api.deleteDevice(device, function (data) {
+ 
+     res.json(data);
+   });
+ });
+
+
 router.get('/add', function (req, res, next) {
 
   res.render('device/add', { title: 'IOT access control', layout: 'layoutAdmin' });

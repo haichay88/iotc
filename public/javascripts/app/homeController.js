@@ -53,19 +53,29 @@ app.service("homeService", function ($http) {
     this.getDevice = function (val) {
         var request = $http({
             method: "get",
-            url: "/device/getDevice/"+val,
+            url: "/device/getDevice/" + val,
             contentType: "application/json; charset=UTF-8",
-            
+
         });
         return request;
     };
 
-    this.updateDevice = function () {
+    this.updateDevice = function (data) {
         var request = $http({
-            method: "get",
+            method: "post",
             url: "/device/updateDevice",
             contentType: "application/json; charset=UTF-8",
+            data: data
+        });
+        return request;
+    };
 
+    this.deleteDevice = function (data) {
+        var request = $http({
+            method: "post",
+            url: "/device/deleteDevice",
+            contentType: "application/json; charset=UTF-8",
+            data: data
         });
         return request;
     };
@@ -123,7 +133,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
             if (pl.data) {
                 if (pl.data.statusCode == 200) {
                     //window.location = "/device";
-                    $scope.deviceInfo=JSON.parse(pl.data.data);
+                    $scope.deviceInfo = JSON.parse(pl.data.data);
                 }
 
             }
@@ -147,10 +157,10 @@ app.controller("homeController", function ($scope, homeService, socket) {
                                 name: "Input " + parseInt(index + 1),
                                 seri: $scope.seriNumber,
                                 channelCode: inputCode[index],
-                                isRepeat:false,
-                                repeatTime:60,
-                                isSetTime:false,
-                                setTime:'08_30'
+                                isRepeat: false,
+                                repeatTime: 60,
+                                isSetTime: false,
+                                setTime: '08_30'
                             };
                             devices.push(element);
                         }
@@ -175,10 +185,10 @@ app.controller("homeController", function ($scope, homeService, socket) {
                 name: $scope.device.name,
                 seri: $scope.seriNumber,
                 channelCode: inputCode[0],
-                isRepeat:false,
-                repeatTime:60,
-                isSetTime:false,
-                setTime:'08_30'
+                isRepeat: false,
+                repeatTime: 60,
+                isSetTime: false,
+                setTime: '08_30'
             });
         } else {
             devices = $scope.devices;
@@ -206,7 +216,24 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
             if (pl.data) {
                 if (pl.data.statusCode == 200) {
-                    $scope.devices = JSON.parse(pl.data.data);
+                    $scope.devices = [];
+                    var result = JSON.parse(pl.data.data);
+                    result.forEach(element => {
+                        var row = {
+                            _id: element._id,
+                            name: element.name,
+                            seri: element.seri,
+                            nameEncode: Base64.encode(element.name),
+                            channel: element.channel,
+                            channelCode: element.channelCode,
+                            isRepeat: element.isRepeat,
+                            repeatTime: element.repeatTime,
+                            isSetTime: element.isSetTime,
+                            setTime: element.setTime
+
+                        }
+                        $scope.devices.push(row);
+                    });
 
                 }
 
@@ -219,7 +246,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
     $scope.updateDevice = function () {
 
-        var promiseGet = homeService.updateDevice();
+        var promiseGet = homeService.updateDevice($scope.deviceInfo);
         promiseGet.then(function (pl) {
 
             if (pl.data) {
@@ -235,10 +262,35 @@ app.controller("homeController", function ($scope, homeService, socket) {
             });
     };
 
+    $scope.deleteDevice = function () {
+
+        if (!$scope.selectedDevice) return;
+        var promiseGet = homeService.deleteDevice($scope.selectedDevice);
+        promiseGet.then(function (pl) {
+
+            if (pl.data) {
+                if (pl.data.statusCode == 200) {
+                    hideDropdowns();
+                    $scope.getDevices();
+                    
+                }
+
+            }
+
+        },
+            function (errorPl) {
+            });
+    };
+    $scope.selectDevice = function (data) {
+  
+        $scope.selectedDevice = data;
+
+    };
+
 
 
     $scope.getStatic = function () {
-       
+
         var serinumber = {
             seri: $scope.deviceInfo.seri//'35367'
         };
@@ -249,7 +301,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
     $scope.updateStatic = function () {
 
         var a = $scope.isChecked;
-      
+
         var static = {
             command: $scope.isChecked ? "R1ONN" : "R1OFF",
             seri: $scope.deviceInfo.seri,

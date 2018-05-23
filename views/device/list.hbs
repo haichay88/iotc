@@ -50,19 +50,18 @@
         <div ng-repeat="item in devices">
             <a href="/device/action/{[{item._id}]}" ng-bind="item.name"></a>
 
-            <a href="/device/action" ng-bind="item.seri"></a>
+            <a href="/device/action/{[{item._id}]}" ng-bind="item.seri"></a>
 
 
-            <span>
+            <span class="responsivetable_actions">
+                <span class="fonticondelete" aria-label="Delete device" no-mobile-data-popup="RGVsZXRlIERvbWFpbg==" dropdown-disclaimer="This will permanently delete the device and all associated records. Are you sure you want to do this?"
+                    dropdown-info="{[{item.nameEncode}]}" dropdown-action="remove-domain" dropdown-domain-id="168706" ng-click="selectDevice(item)" dropdown-function="deleteDevice()"
+                    onclick="showConfirmationDropdown($(this));" id="has-dropdown" data-original-title="" title=""></span>
             </span>
 
         </div>
     </div>
-    <form method="POST" id="deletesnapshot">
-        <input type="hidden" name="csrf_token" value="p/LVSWH4jD3nzUOOhdHl/fpQylYCtu3WexYXGfoour4=">
-        <input type="hidden" name="action" value="deletesnapshot">
-        <input type="hidden" name="SNAPSHOTID" value="">
-    </form>
+
 
     <hr class="hr40">
     <h4 class="m-b-0">Using Snapshots</h4>
@@ -88,13 +87,13 @@
                 <i class="zmdi zmdi-info-outline"></i>
                 <span id="dropdown-label"></span>?
             </h5>
-            <div class="server-info"></div>
+            <div class="server-info"> abc</div>
             <p>
                 <span id="dropdown-disclaimer"></span>
             </p>
         </div>
         <div class="dropdown-actions">
-            <a class="btn btn-xs btn-primary btn-block btn-confirmation btn-confirmation-blue"></a>
+            <a class="btn btn-xs btn-primary btn-block btn-confirmation btn-confirmation-blue" ng-click="deleteDevice()"></a>
             <button class="btn btn-xs btn-default btn-outline btn-block" data-dismiss="drop" onclick="hideDropdowns();">Cancel</button>
         </div>
     </div>
@@ -106,7 +105,7 @@
                 <span id="dropdown-label"></span>
                 <span id="question-mark">?</span>
             </h5>
-            <div class="server-info"></div>
+            <div class="server-info">abc</div>
             <p>
                 <span id="dropdown-disclaimer"></span>
             </p>

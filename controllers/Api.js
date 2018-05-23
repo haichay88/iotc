@@ -111,8 +111,25 @@ var api = {
     },
     updateDevice: function (data,callback) {
        
-        request.get({
+        request.post({
             url: url+'/device/updateDevice',
+            form: data
+        }
+            , function (error, response, body) {
+                //console.log('error:', error); // Print the error if one occurred
+                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                //console.log('body:', body); // Print the HTML for the Google homepage.
+                var res={
+                    statusCode:response && response.statusCode,
+                    data:body
+                }
+                callback(res);
+            });
+    },
+    deleteDevice: function (data,callback) {
+       
+        request.post({
+            url: url+'/device/deleteDevice',
             form: data
         }
             , function (error, response, body) {

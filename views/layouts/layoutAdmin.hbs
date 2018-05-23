@@ -97,6 +97,7 @@
     
      <script src="/javascripts/angular.min.js"></script>
     
+    <script src="/javascripts/custom.js"></script>
     <script src="/javascripts/app/module.js"></script>
     <script src="/javascripts/app/homeController.js"></script>
     <script>
@@ -113,23 +114,7 @@
     </script>
     <script type="text/javascript">
 
-        $(document).ready(function () {
-       // var socket = io("http://45.77.128.178:5000");
-
-            var server_time = 1525147949;
-            var local_time = Math.floor(new Date().getTime() / 1000);
-
-            var cookie_name = 'PHPSESSID_login_expire';
-
-            var time_sane = (local_time >= (server_time - 60)) && (local_time <= (server_time + 60));
-
-            if (time_sane) {
-                setInterval(function () {
-                    inactivity_check(cookie_name);
-                },
-                    60000);
-            }
-        });
+     
 
     </script>
     <script>

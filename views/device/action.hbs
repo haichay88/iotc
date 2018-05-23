@@ -116,20 +116,33 @@
 						<input type="text" name="domain" ng-model="deviceInfo.name" placeholder="Tên thiết bị">
 
 					</label>
-					<input type="button" value="Thay đổi" class="flexwidth1third responsivefullwidthmr10">
+					<input type="button" value="Thay đổi" class="flexwidth1third responsivefullwidthmr10" ng-click="updateDevice()">
 					<h3>
 						Bật/tắt theo thời gian lặp lại
 					</h3>
 					<form method="post" class="flexlayoutform">
 
 						<div class="flexwidth2thirds">
-							Đang thiết lập: 1s 
-							<a class="h3link" href="#">Thiết lập</a>
+							Đang thiết lập: <b ng-bind="deviceInfo.repeatTime"></b>s 
+							
 						</div>
 
-						<input type="checkbox" name="email_maint_notify" value="yes" id="email_maint_notify" class="checkboxtoggleonoff">
+						<input type="checkbox" name="email_maint_notify" value="yes" id="email_maint_notify" class="checkboxtoggleonoff" ng-model="showEditRepeat" >
 						<label for="email_maint_notify">
 						</label>
+							<hr class="hr10">
+						<div ng-show="showEditRepeat" class="flexwidth100p alert alert-info alert-sm" id="bw_stop_threshold" style="display: flex;">
+							<div class="alert-body">
+								<div style="width:100%;display:block;">
+									<span style="vertical-align:middle; padding-right:2px;">Stop server when usage exceeds</span>
+									<input type="text" name="bw_stop_threshold" style="width: 60px; height: 30px; background-color: white;" maxlength="3" value="95">
+									<span style="vertical-align:middle; padding-right:2px;"> % of cap</span>
+									<a class="btn btn-xs btn-primary" onclick="$('form[name=bandwidthThreshold]').submit();" style="cursor:pointer;margin-left:5px;">
+										Submit
+									</a>
+								</div>
+							</div>
+						</div>
 					</form>
 
 					<hr class="hr30">
@@ -143,13 +156,26 @@
 							<span style="vertical-align:middle; padding-right:2px;">Đang thiết lập: 20:30</span>
 							<span class="fonticonhelp" data-popup2="Tm90aWZpZWQgd2hlbiBhbnkgVk0gZXhjZWVkcyA3NSUsIDkwJSBhbmQgMTAwJSBvZiB0aGUgYmFuZHdpZHRoIGxpbWl0Lg=="
 							 data-original-title="" title=""></span>
-							 <a class="h3link" href="#">Thiết lập</a>
+							 
 						</div>
 						
-						<input type="checkbox" name="send_bandwidth_alerts" value="yes" id="send_bandwidth_alerts" class="flexwidth1third checkboxtoggleonoff"
+						<input type="checkbox" name="send_bandwidth_alerts" value="yes" id="send_bandwidth_alerts" ng-model="showEditTime" class="flexwidth1third checkboxtoggleonoff"
 						>
 						<label for="send_bandwidth_alerts">
 						</label>
+						<hr class="hr10">
+						<div ng-show="showEditTime" class="flexwidth100p alert alert-info alert-sm" id="bw_stop_threshold" style="display: flex;">
+							<div class="alert-body">
+								<div style="width:100%;display:block;">
+									<span style="vertical-align:middle; padding-right:2px;">Stop server when usage exceeds</span>
+									<input type="text" name="bw_stop_threshold" style="width: 60px; height: 30px; background-color: white;" maxlength="3" value="95">
+									<span style="vertical-align:middle; padding-right:2px;"> % of cap</span>
+									<a class="btn btn-xs btn-primary" onclick="$('form[name=bandwidthThreshold]').submit();" style="cursor:pointer;margin-left:5px;">
+										Submit
+									</a>
+								</div>
+							</div>
+						</div>
 					</form>
 
 					
