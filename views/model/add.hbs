@@ -1,0 +1,52 @@
+<div class="app-header">
+	<div class="container-fluid">
+		<div class="header-top header-top-toolbar">
+			<div class="header-title header-title-avatar">
+				<div class="header-avatar">
+					<a class="btn btn-primary btn-circle" id="btn-vultr-back" href="/model/" aria-label="Go back">
+						<i class="zmdi zmdi-arrow-left"></i>
+					</a>
+				</div>
+				<h1 class="h2" style="line-height: 51px;">
+					add new model
+				</h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid" style="padding: 0px; margin-top: 0px; margin-bottom: 0px;">
+		<a class="deploy_floating" href="#" title="" aria-label="Deploy New Server" data-popup2="RGVwbG95IE5ldyBTZXJ2ZXI=" data-original-title="Deploy New Server">
+			<span class="fonticon_plus"></span>
+		</a>
+	</div>
+</div>
+<div class="block1290" ng-controller="modelController">
+
+	<div class="block520center">
+		<form method="post">
+			<input type="hidden" name="csrf_token" value="3QqTYRSZgG3ekftgayzsfyH7vvm6E3NUuHYfl0qdzoc=">
+			<input type="hidden" name="action" value="adddomain">
+			<label class="floatinglabel flexwidth100">
+				<span style="display: none;">Seri number</span>
+				<input type="text" name="serverip" ng-model="model.seriNumber" placeholder="Seri number">
+				
+			</label>
+			<label class="floatinglabel flexwidth100">
+				<span style="display: none;">Channel input</span>
+				<input type="text" name="domain" ng-model="model.channelInput" value="" placeholder="channel input">
+
+			</label>
+
+			<label class="floatinglabel flexwidth100">
+				<span style="display: none;">Channel analog</span>
+				<input type="text" name="domain" ng-model="model.channelAnalog" value="" placeholder="channel analog">
+
+			</label>
+
+			<hr class="hr10">
+			
+			<input type="button" value="Thêm" class="flexwidth100" ng-click="addModel()">
+		</form>
+	</div>
+
+</div>

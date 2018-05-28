@@ -1,6 +1,8 @@
 var request = require('request');
 // var url='http://144.202.115.228:4000';
-var url='http://localhost:4000';
+
+var url=require('../config/configUrl');
+
 var api = {
     getStatic: function (callback) {
         
