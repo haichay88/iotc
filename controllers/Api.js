@@ -5,19 +5,19 @@ var url=require('../config/configUrl');
 
 var api = {
     getStatic: function (callback) {
-        
-        
+
+
         request.get(url+'/static/', function (error, response, body) {
            // console.log('error:', error); // Print the error if one occurred
            // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
            // console.log('body:', body); // Print the HTML for the Google homepage.
            //console.log(response);
-           
+
             callback(body);
         });
     },
     UpdateStatic: function (data,callback) {
-       
+
         request.post({
             url: url+'/update',
             form: data
@@ -30,20 +30,24 @@ var api = {
             });
     },
     userRegister: function (data,callback) {
-       
+
         request.post({
             url: url+'/user/register',
             form: data
         }
             , function (error, response, body) {
                 //console.log('error:', error); // Print the error if one occurred
-                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
                 //console.log('body:', body); // Print the HTML for the Google homepage.
-                callback(body);
+                var res={
+                    statusCode:response && response.statusCode,
+                    data:JSON.parse(body)
+                }
+                callback(res);
             });
     },
     userLogin: function (data,callback) {
-       
+
         request.post({
             url: url+'/user/login',
             form: data
@@ -52,16 +56,16 @@ var api = {
                 //console.log('error:', error); // Print the error if one occurred
                 console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
                 //console.log('body:', body); // Print the HTML for the Google homepage.
-                
+
                 var res={
                     statusCode:response && response.statusCode,
-                    data:JSON.parse(body) 
+                    data:JSON.parse(body)
                 }
                 callback(res);
             });
     },
     addDevice: function (data,callback) {
-       
+
         request.post({
             url: url+'/user/addDevice',
             form: data
@@ -78,7 +82,7 @@ var api = {
             });
     },
     getDevices: function (data,callback) {
-       
+
         request.get({
             url: url+'/user/getDevices',
             form: data
@@ -95,7 +99,7 @@ var api = {
             });
     },
     getDevice: function (data,callback) {
-       
+
         request.post({
             url: url+'/device/getDevice',
             form: data
@@ -112,7 +116,7 @@ var api = {
             });
     },
     updateDevice: function (data,callback) {
-       
+
         request.post({
             url: url+'/device/updateDevice',
             form: data
@@ -129,7 +133,7 @@ var api = {
             });
     },
     deleteDevice: function (data,callback) {
-       
+
         request.post({
             url: url+'/device/deleteDevice',
             form: data
@@ -146,7 +150,7 @@ var api = {
             });
     },
     checkSeriNumber: function (data,callback) {
-       
+
         request.post({
             url: url+'/model/getModelDevice',
             form: data
@@ -162,7 +166,7 @@ var api = {
                 callback(res);
             });
     },
-    
+
 
 
 

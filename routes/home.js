@@ -15,6 +15,12 @@ homeRouter.get('/register', function (req, res, next) {
   res.render('home/register', { title: 'IOT access control', layout: 'layoutLogin' });
 });
 
+homeRouter.get('/logout', function (req, res, next) {
+res.clearCookie("us");
+  res.render('home/login',
+  { title: 'IOT access control', layout: 'layoutLogin' });
+});
+
 homeRouter.post('/register', function (req, res, next) {
   req.body.password = md5(req.body.password);
   api.userRegister(req.body, function (data) {
@@ -28,11 +34,9 @@ homeRouter.post('/login', function (req, res, next) {
   api.userLogin(req.body, function (data) {
 
     var response = data;
-    
+
     if (response.statusCode == 200) {
-      if (!req.cookies.us) {
-        res.cookie('us', response.data, { httpOnly: true, maxAge: dateExpire });
-      }
+    res.cookie('us', response.data, { httpOnly: true, maxAge: dateExpire });
     }
 
     res.json(data);

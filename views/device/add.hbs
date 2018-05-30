@@ -21,7 +21,10 @@
 	</div>
 </div>
 <div class="block1290" ng-controller="homeController">
-
+	<div class="error_message" ng-show="error">
+{[{error}]}
+					
+			</div>
 	<div class="block520center">
 		<form method="post">
 			<input type="hidden" name="csrf_token" value="3QqTYRSZgG3ekftgayzsfyH7vvm6E3NUuHYfl0qdzoc=">
@@ -34,7 +37,7 @@
 					<span class="fonticon-eye" data-original-title="Kiểm tra hợp lệ" title=""></span>
 				</span>
 			</label>
-			<label class="floatinglabel flexwidth100" ng-hide="model.channelInput>1">
+			<label class="floatinglabel flexwidth100" ng-hide="model.channelInput>1|| model.channelInput==undefined">
 				<span style="display: none;">Tên thiết bị</span>
 				<input type="text" name="domain" ng-model="device.name" value="" placeholder="Tên thiết bị">
 
@@ -54,7 +57,7 @@
 					<input type="text" name="domain" ng-model="item.name" value="" placeholder="{[{item.name}]}">
 
 				</label>
-				
+
 			</div>
 			<input type="button" value="Thêm" class="flexwidth100" ng-click="addDevice()">
 		</form>

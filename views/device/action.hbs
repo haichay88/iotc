@@ -1,7 +1,7 @@
 <div ng-controller="homeController">
 <input type="hidden" id="seri" value="{{id}}">
 	<div class="app-header" style="margin-bottom: 15px;" ng-init="getDeviceInfo()" >
-		
+
 		<div id="header2_wrap">
 			<div class="header-top header-top-toolbar">
 				<div class="header-title header-title-avatar">
@@ -19,7 +19,7 @@
 						</li>
 						<li>Seri:
 							<b ng-bind="deviceInfo.seri"></b>
-							
+
 						</li>
 						{{!--
 						<li>Created:
@@ -31,7 +31,7 @@
 					<div class="header-toolbar">
 						<form method="POST" id="delete">
 							<input type="hidden" name="csrf_token" value="S+uZathHKYPc5NtjwJnijwLnMUVl+4+uqQbDFZK0rAg=">
-							
+
 						</form>
 						<span class="btn btn-link btn-icon">
 							<span class="fonticondelete" data-popup2="UmVtb3ZlIERvbWFpbg==" aria-label="Remove Domain" id="has-dropdown" dropdown-disclaimer="Are you sure you want to delete this domain and it's associated records?"
@@ -73,8 +73,8 @@
 
 	</div>
 	<div class="block1290">
-		<div class="block1290" style="overflow-x: hidden;">
-			<div class="row" id="tabc_subssettings">
+		<div class="block520center" >
+			<div class=" " id="tabc_subssettings">
 				<div id="tab_records" class="block460center">
 					<div style="padding: 0px 6px;">
 						<h3>Trạng thái</h3>
@@ -107,39 +107,32 @@
 
 
 
-				<div class="block460center submenutabcontent" style="display:none;" id="tab_settings">
-					<h3>
-						Thay đổi tên thiết bị
-					</h3>
-					<label class="floatinglabel flexwidthhalf">
+				<div class="block520center submenutabcontent" style="display:none;" id="tab_settings">
+
+					<label class="floatinglabel flexwidth100">
 						<span style="display: none;">Tên thiết bị</span>
 						<input type="text" name="domain" ng-model="deviceInfo.name" placeholder="Tên thiết bị">
 
 					</label>
-					<input type="button" value="Thay đổi" class="flexwidth1third responsivefullwidthmr10" ng-click="updateDevice()">
-					<h3>
-						Bật/tắt theo thời gian lặp lại
-					</h3>
+
 					<form method="post" class="flexlayoutform">
 
 						<div class="flexwidth2thirds">
-							Đang thiết lập: <b ng-bind="deviceInfo.repeatTime"></b>s 
-							
+							Bật/tắt theo thời gian lặp lại
+
 						</div>
 
 						<input type="checkbox" name="email_maint_notify" value="yes" id="email_maint_notify" class="checkboxtoggleonoff" ng-model="showEditRepeat" >
 						<label for="email_maint_notify">
 						</label>
 							<hr class="hr10">
-						<div ng-show="showEditRepeat" class="flexwidth100p alert alert-info alert-sm" id="bw_stop_threshold" style="display: flex;">
+						<div ng-show="showEditRepeat" class="flexwidth100 alert alert-info alert-sm" id="bw_stop_threshold" style="display: flex;">
 							<div class="alert-body">
 								<div style="width:100%;display:block;">
-									<span style="vertical-align:middle; padding-right:2px;">Stop server when usage exceeds</span>
-									<input type="text" name="bw_stop_threshold" style="width: 60px; height: 30px; background-color: white;" maxlength="3" value="95">
-									<span style="vertical-align:middle; padding-right:2px;"> % of cap</span>
-									<a class="btn btn-xs btn-primary" onclick="$('form[name=bandwidthThreshold]').submit();" style="cursor:pointer;margin-left:5px;">
-										Submit
-									</a>
+									<span style="vertical-align:middle; padding-right:2px;">Thiết lập thời gian bật tắt</span>
+									<input type="text" name="bw_stop_threshold" ng-model="deviceInfo.repeatTime" style="width: 60px; height: 30px; background-color: white;">
+									<span style="vertical-align:middle; padding-right:2px;"> phút</span>
+
 								</div>
 							</div>
 						</div>
@@ -147,38 +140,33 @@
 
 					<hr class="hr30">
 
-					<h3>
-						Bật/ tắt theo một thời gian cụ thể
-					</h3>
 					<form method="post" class="flexlayoutform" onsubmit="xhrSetNotifications(this, '/_ajax/SetNotifications.php'); return false;">
-						
+
 						<div class="flexwidth2thirds">
-							<span style="vertical-align:middle; padding-right:2px;">Đang thiết lập: 20:30</span>
+							<span style="vertical-align:middle; padding-right:2px;">Bật/ tắt theo một thời gian cụ thể</span>
 							<span class="fonticonhelp" data-popup2="Tm90aWZpZWQgd2hlbiBhbnkgVk0gZXhjZWVkcyA3NSUsIDkwJSBhbmQgMTAwJSBvZiB0aGUgYmFuZHdpZHRoIGxpbWl0Lg=="
 							 data-original-title="" title=""></span>
-							 
+
 						</div>
-						
+
 						<input type="checkbox" name="send_bandwidth_alerts" value="yes" id="send_bandwidth_alerts" ng-model="showEditTime" class="flexwidth1third checkboxtoggleonoff"
 						>
 						<label for="send_bandwidth_alerts">
 						</label>
 						<hr class="hr10">
-						<div ng-show="showEditTime" class="flexwidth100p alert alert-info alert-sm" id="bw_stop_threshold" style="display: flex;">
+						<div ng-show="showEditTime" class="flexwidth100 alert alert-info alert-sm" id="bw_stop_threshold" style="display: flex;">
 							<div class="alert-body">
 								<div style="width:100%;display:block;">
-									<span style="vertical-align:middle; padding-right:2px;">Stop server when usage exceeds</span>
-									<input type="text" name="bw_stop_threshold" style="width: 60px; height: 30px; background-color: white;" maxlength="3" value="95">
-									<span style="vertical-align:middle; padding-right:2px;"> % of cap</span>
-									<a class="btn btn-xs btn-primary" onclick="$('form[name=bandwidthThreshold]').submit();" style="cursor:pointer;margin-left:5px;">
-										Submit
-									</a>
+									<span style="vertical-align:middle; padding-right:2px;">Đang thiết lập</span>
+									<input type="text" name="bw_stop_threshold" ng-model="deviceInfo.setTime" style="width: 100px; height: 30px; background-color: white;">
+
 								</div>
 							</div>
 						</div>
 					</form>
+						<input type="button" value="Thay đổi" class=" flexwidth100" ng-click="updateDevice()">
 
-					
+
 
 				</div>
 			</div>

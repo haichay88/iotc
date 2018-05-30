@@ -98,7 +98,8 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
         var promiseGet = homeService.userRegister($scope.user);
         promiseGet.then(function (pl) {
-            if (pl.data) {
+            if (pl.data.statusCode == 200) {
+              window.location = "/home/login";
                 console.log(pl.data);
 
 
@@ -144,7 +145,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
     };
 
     $scope.checkSeriNumber = function () {
-
+$scope.error=undefined;
         var promiseGet = homeService.checkSeriNumber($scope.seriNumber);
         promiseGet.then(function (pl) {
             if (pl.data) {
@@ -169,6 +170,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
 
                 } else {
+                  $scope.error="Khong tim thay seri, vui long kiem tra lai, Hoac lien he nha cung cap";
                     $scope.model = {};
                 }
 
@@ -178,7 +180,13 @@ app.controller("homeController", function ($scope, homeService, socket) {
             function (errorPl) {
             });
     };
+
     $scope.addDevice = function () {
+      $scope.error=undefined;
+      if(!$scope.device){
+        $scope.error="Thông tin thiết bị không hợp lệ, vui lòng kiểm tra lại";
+        return;
+      }
         var devices = [];
         if ($scope.device) {
             devices.push({
@@ -251,7 +259,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
 
             if (pl.data) {
                 if (pl.data.statusCode == 200) {
-                    $scope.devices = JSON.parse(pl.data.data);
+                    //$scope.devices = JSON.parse(pl.data.data);
 
                 }
 
@@ -272,7 +280,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
                 if (pl.data.statusCode == 200) {
                     hideDropdowns();
                     $scope.getDevices();
-                    
+
                 }
 
             }
@@ -282,7 +290,7 @@ app.controller("homeController", function ($scope, homeService, socket) {
             });
     };
     $scope.selectDevice = function (data) {
-  
+
         $scope.selectedDevice = data;
 
     };
