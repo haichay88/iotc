@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var homeRouter = require('./routes/home');
 var deviceRouter = require('./routes/device');
 var modelRouter = require('./routes/model');
+var settingRouter = require('./routes/setting');
 
 var app = express();
 
@@ -37,7 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/home', homeRouter);
-app.use('/users', usersRouter);
+app.use('/setting',settingRouter );
+
 app.use('/device', deviceRouter);
 app.use('/model', modelRouter);
 // catch 404 and forward to error handler
@@ -94,7 +96,7 @@ io.on("connection", function (socket) {
   socket.on('thongtin', function (data) {
 
     var res= data.espsend.split('-');
-    
+
     socket.to(res[0]).emit('mymessage',res[1] );
     console.log(data);
 

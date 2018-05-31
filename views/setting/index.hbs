@@ -1,0 +1,358 @@
+<div ng-controller="homeController" ng-init="getUser()">
+
+
+<div id="header2_wrap">
+  <div id="header2_left">
+    <h1 ng-bind="user.firstName + ' ' + user.lastName">
+				Le Van  Hai
+			</h1>
+    <span class="header2_details" ng-bind="user.userName">
+				lehaile37@gmail.com
+			</span>
+
+  </div>
+  <div id="header2_right">
+  </div>
+</div>
+
+<div class="block1290 block1290deploy">
+  <div class="tabs-responsive">
+    <div class="tabs-container">
+      <ul class="nav nav-tabs">
+        <li id="tabl_settingsprofile" class="active"><a href="/settings/#settingsprofile" onclick="changeTabSubmenu('settingsprofile'); hidePostMessages();">Profile</a></li>
+        <li id="tabl_settingsauthentication" class=""><a href="/settings/#settingsauthentication" onclick="changeTabSubmenu('settingsauthentication'); hidePostMessages();">Authentication</a></li>
+        <li id="tabl_settingsapi" class=""><a href="/settings/#settingsapi" onclick="changeTabSubmenu('settingsapi'); hidePostMessages();">API</a></li>
+        <li id="tabl_settingsusers" class=""><a href="/settings/#settingsusers" onclick="changeTabSubmenu('settingsusers'); hidePostMessages();">Users</a></li>
+        <li id="tabl_settingsnotifications" class=""><a href="/settings/#settingsnotifications" onclick="changeTabSubmenu('settingsnotifications'); hidePostMessages();">Notifications</a></li>
+      </ul>
+      <button class="button-tab btn btn-prev" type="button" data-click="prev-tab"><span class="fonticon fonticon_chevron_left"></span></button>
+      <button class="button-tab btn btn-next" type="button" data-click="next-tab"><span class="fonticon fonticon_chevron_right"></span></button>
+    </div>
+  </div>
+  <a class="deploy_floating" href="/deploy/" title="" aria-label="Deploy New Server" data-popup2="RGVwbG95IE5ldyBTZXJ2ZXI=" data-original-title="Deploy New Server">
+		<span class="fonticon_plus"></span>
+	</a>
+</div>
+
+<div class="block1290">
+  <div class="block460center submenutabcontent" id="tabc_settingsprofile" style="">
+    <h3>
+			Your Details
+		</h3>
+
+
+
+
+
+
+    <form method="post" class="flexlayoutform">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="changesettings">
+      <label class="floatinglabel flexwidthhalf">
+				<span style="display: inline;">First Name</span>
+				<input type="text" name="first_name" ng-model="user.firstName" placeholder="First Name" style="padding-top: 14px;">
+			</label>
+      <label class="floatinglabel flexwidthhalf">
+				<span style="display: inline;">Last Name</span>
+				<input type="text" name="last_name" ng-model="user.lastName" ng-value="user.lastName" placeholder="Last Name" style="padding-top: 14px;">
+			</label>
+      <label class="floatinglabel flexwidth100">
+				<span style="display: inline;">Email</span>
+				<input type="text" name="email" ng-model="user.userName" placeholder="Email" readonly="readonly" style="padding-top: 14px;">
+			</label>
+
+      <!-- <div style="width: 100%;">
+        <div style="font-size: 13px; position: relative; top: -16px; right: 2px; text-align: right; height: 12px;">
+          <a href="/settings/emailchange">Change email address</a>
+        </div>
+      </div> -->
+
+      <label class="floatinglabel flexwidth100">
+				<span style="display: inline;">Phone number</span>
+				<input type="text" name="phone" ng-model="user.phone" placeholder="Phone number">
+			</label>
+      <label class="floatinglabel flexwidth100">
+				<span style="display: inline;">Address</span>
+				<input type="text" name="address1" ng-model="user.address" placeholder="Address" style="padding-top: 14px;">
+			</label>
+
+
+      <hr class="hr10">
+      <input type="submit" value="Update Profile" ng-click="updateUser()" class="flexwidth100">
+    </form>
+  </div>
+
+
+  <div class="block460center submenutabcontent" id="tabc_settingsauthentication" style="display: none;">
+    <h3>
+			Two Factor Auth
+		</h3> Keep your account secure by enabling two-factor authentication. Each time you log in, you’ll be required to provide your password plus a randomly generated access code.
+    <hr class="hr20">
+    <a class="button btn-alternate flexwidth100" href="/settings/twofactor/">
+			Manage Two Factor Auth
+		</a>
+    <hr class="hr50">
+    <h3>
+			Change Password
+		</h3>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="changepassword">
+      <label class="floatinglabel flexwidth100">
+				<span style="display: none;">Current Password</span>
+				<input type="password" name="current_password" placeholder="Current Password" required="">
+			</label>
+      <label class="floatinglabel flexwidth100">
+				<span style="display: none;">New Password</span>
+				<input type="password" name="password1" placeholder="New Password" required="">
+			</label>
+      <label class="floatinglabel flexwidth100">
+				<span style="display: none;">Confirm New Password</span>
+				<input type="password" name="password2" placeholder="Confirm New Password" required="">
+			</label>
+      <hr class="hr10">
+      <input type="submit" value="Change Password" class="flexwidth100">
+    </form>
+  </div>
+
+  <div class="block520center submenutabcontent" id="tabc_settingsapi" style="display: none;">
+    <h3>
+			Personal Access Token
+		</h3> Integrate with the <a class="h3link" href="https://www.vultr.com/api/">Vultr API</a> to quickly spin up, destroy, and control your instances using this API key.
+    <hr class="hr20">
+    <label class="floatinglabel flexwidth100">
+				<span style="display: inline;">API Key</span>
+				<input type="text" name="api_key" value="BWOSK2ZETJFZDMMZGE262H3LD7IOATIVQDJA" readonly="readonly" style="padding-top: 14px;">
+				<span class="inputformiconoverlay" style="right:16px; background-color:#eeeeee;">
+					<span class="fonticoncopy" data-popup2="Q29weSBBUEkga2V5IHRvIENsaXBib2FyZA==" data-clicktoclipboard="BWOSK2ZETJFZDMMZGE262H3LD7IOATIVQDJA" data-original-title="" title=""></span>
+					<span class="fonticonrefresh" data-popup2="R2VuZXJhdGUgbmV3IEFQSSBrZXk=" onclick="document.getElementById('formregeneratekey').submit(); return false;" data-original-title="" title=""></span>
+				</span>
+			</label>
+    <form method="post" id="formregeneratekey">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="regeneratekey">
+    </form>
+    <hr class="hr20">
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="disableapi">
+      <input type="submit" value="Disable API" class="flexwidth100">
+    </form>
+    <br>
+    <br>
+
+
+
+    <h3>Access Control</h3> The following subnets are allowed to use this API key.
+    <table class="tablelist">
+      <tbody>
+        <tr>
+          <th>Subnet</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td>
+            115.79.200.101/32
+          </td>
+          <td>
+            <button type="button" class="button" style="width: 100%;" onclick="removeSubnet('115.79.200.101', '32')">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr class="hr10">
+    <form method="post" class="flexlayoutform">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="addwhitelist">
+      <input type="text" name="subnet" autocomplete="off" placeholder="203.0.113.24" style="flex-grow:2; margin-bottom:10px;" required="">
+      <span style="padding:0px 10px;">
+				/
+				</span>
+      <input type="text" name="subnet_size" autocomplete="off" placeholder="32" size="3" style="width:60px; margin-bottom:10px;" required="">
+      <input type="submit" value="Add" class="flexwidth1third responsivefullwidthmr10" style="margin-bottom:10px;">
+    </form>
+
+    <form method="POST" style="display: inline-block; padding-top: 8px;" id="whitelistallv4">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="addwhitelist">
+      <input type="hidden" name="subnet" value="0.0.0.0">
+      <input type="hidden" name="subnet_size" value="0">
+      <button class="button" type="button" aria-label="Allow All IPv4" dropdown-info="" dropdown-disclaimer="Are you sure you want to allow access from any IPv4 address? We recommend using a strict list of allowed hosts, in order to ensure the security of your account."
+        dropdown-action="api-allow-ipv4" id="has-dropdown" dropdown-function="$('#whitelistallv4').submit();" onclick="showConfirmationDropdown($(this));">
+						Allow All IPv4
+					</button>
+    </form>
+    <form method="POST" style="display: inline-block; padding-top: 8px;" id="whitelistallv6">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="addwhitelist">
+      <input type="hidden" name="subnet" value="::">
+      <input type="hidden" name="subnet_size" value="0">
+      <button class="button" type="button" aria-label="Allow All IPv6" dropdown-info="" dropdown-disclaimer="Are you sure you want to allow access from any IPv6 address? We recommend using a strict list of allowed hosts, in order to ensure the security of your account."
+        dropdown-action="api-allow-ipv6" id="has-dropdown" dropdown-function="$('#whitelistallv6').submit();" onclick="showConfirmationDropdown($(this));">
+						Allow All IPv6
+					</button>
+    </form>
+
+    <br>
+    <br>
+
+    <div class="alert alert-info alert-sm">
+      <div class="alert-body">
+        <p><b>Reselling and using WHMCS? </b>Download the official Vultr WHMCS module, and read the module documentation.</p>
+      </div>
+      <div class="alert-actions">
+        <a href="https://www.vultr.com/docs/vultr-whmcs-module" class="btn btn-xs btn-default btn-outline" target="_blank">Docs</a>
+        <a href="https://my.vultr.com/download/vultr-whmcs/" class="btn btn-xs btn-primary">Download</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="block1290 submenutabcontent" id="tabc_settingsusers" style="display: none;">
+    <h3>
+			Users
+		</h3>
+    <div class="responsivetable responsivetable_users">
+      <div>
+        <span>
+					Name
+				</span>
+        <span>
+					Email
+				</span>
+        <span>
+				</span>
+      </div>
+      <div>
+        <span>
+					No users found
+				</span>
+      </div>
+    </div>
+    <hr class="hr30">
+    <a class="button" href="/users/manage/?USERID=new">
+			Add New User
+		</a>
+  </div>
+
+
+  <div class="block460center submenutabcontent" id="tabc_settingsnotifications" style="display: none;">
+    <h3>
+			Maintenance and Outage Notifications
+		</h3>
+    <form method="post" class="flexlayoutform" onsubmit="xhrSetNotifications(this, '/_ajax/SetNotifications.php'); return false;">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="accountSetEmailNotifications">
+      <div class="flexwidth2thirds">
+        Send E-mails for Outage and Maintenance
+      </div>
+      <input type="hidden" name="email_maint_notify" value="no">
+      <input type="checkbox" name="email_maint_notify" value="yes" id="email_maint_notify" class="checkboxtoggleonoff" onclick="$(this).parent().submit();">
+      <label for="email_maint_notify">
+			</label>
+    </form>
+
+    <hr class="hr30">
+
+    <h3>
+			Bandwidth Preferences
+		</h3>
+    <form method="post" class="flexlayoutform" onsubmit="xhrSetNotifications(this, '/_ajax/SetNotifications.php'); return false;">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="accountSetBandwidthAlerts">
+      <div class="flexwidth2thirds">
+        <span style="vertical-align:middle; padding-right:2px;">Send E-mails on Bandwidth Usage</span>
+        <span class="fonticonhelp" data-popup2="Tm90aWZpZWQgd2hlbiBhbnkgVk0gZXhjZWVkcyA3NSUsIDkwJSBhbmQgMTAwJSBvZiB0aGUgYmFuZHdpZHRoIGxpbWl0Lg==" data-original-title="" title=""></span>
+      </div>
+      <input type="hidden" name="send_bandwidth_alerts" value="no">
+      <input type="checkbox" name="send_bandwidth_alerts" value="yes" id="send_bandwidth_alerts" class="flexwidth1third checkboxtoggleonoff" checked="checked" onclick="$(this).parent().submit();">
+      <label for="send_bandwidth_alerts">
+			</label>
+    </form>
+
+    <form method="post" class="flexlayoutform" name="bandwidthThreshold">
+      <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+      <input type="hidden" name="action" value="accountSetBandwidthStopThreshold">
+      <div class="flexwidth2thirds">
+        <span style="vertical-align:middle; padding-right:2px;">Stop VMs on Bandwidth Usage</span>
+        <span class="fonticonhelp" data-popup2="VXNhZ2UgY2hlY2tlZCBob3VybHkgLSBtYXkgc3RpbGwgaW5jdXIgdXAgdG8gb25lIGhvdXIgb2Ygb3ZlcmFnZSBpZiBsaW1pdCBpcyBzZXQgdG8gMTAwJQ==" data-original-title="" title=""></span>
+      </div>
+      <input type="hidden" name="bw_stop" value="no">
+      <input type="checkbox" name="bw_stop" value="yes" id="bw_stop" class="flexwidth1third checkboxtoggleonoff" onclick="$('form[name=bandwidthThreshold]').submit();">
+      <label for="bw_stop">
+			</label>
+      <hr class="hr10">
+      <div class="flexwidth100p alert alert-info alert-sm" id="bw_stop_threshold" style="display: none;">
+        <div class="alert-body">
+          <div style="width:100%;display:block;">
+            <span style="vertical-align:middle; padding-right:2px;">Stop server when usage exceeds</span>
+            <input type="text" name="bw_stop_threshold" style="width:60px;height:30px;" maxlength="3" value="95">
+            <span style="vertical-align:middle; padding-right:2px;"> % of cap</span>
+            <a class="btn btn-xs btn-primary" onclick="$('form[name=bandwidthThreshold]').submit();" style="cursor:pointer;margin-left:5px;">
+								Submit
+							</a>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+
+  <form method="post" id="emailverifyform">
+    <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+    <input type="hidden" name="action" value="AccountSendEmailVerifyEmail">
+  </form>
+
+  <form method="post" id="subnetremoveform">
+    <input type="hidden" name="csrf_token" value="iIg3rj+Mrlx2hGLeXKzCvCMGTF8rHzKLZOrcyu5nLi8=">
+    <input type="hidden" name="action" value="removewhitelist">
+    <input type="hidden" name="subnet">
+    <input type="hidden" name="subnet_size">
+  </form>
+
+
+
+
+  <div class="dropdown-confirmation dropdown-confirmation-blue">
+    <div class="dropdown-body">
+      <h5 class="dropdown-title text-info">
+			<i class="zmdi zmdi-info-outline"></i>
+			<span id="dropdown-label"></span>?
+		</h5>
+      <div class="server-info"></div>
+      <p>
+        <span id="dropdown-disclaimer"></span>
+      </p>
+    </div>
+    <div class="dropdown-actions">
+      <a class="btn btn-xs btn-primary btn-block btn-confirmation btn-confirmation-blue"></a>
+      <button class="btn btn-xs btn-default btn-outline btn-block" data-dismiss="drop" onclick="hideDropdowns();">Cancel</button>
+    </div>
+  </div>
+
+  <div class="dropdown-confirmation dropdown-confirmation-red">
+    <div class="dropdown-body">
+      <h5 class="dropdown-title text-danger"><i class="zmdi zmdi-alert-circle-o"></i>
+			<span id="dropdown-label"></span><span id="question-mark">?</span>
+		</h5>
+      <div class="server-info"></div>
+      <p>
+        <span id="dropdown-disclaimer"></span>
+      </p>
+      <div class="checkbox">
+        <label>
+				<input type="checkbox" class="confirm" onchange="enableButton($(this));">
+					Yes, <span id="action-label"></span> this <span id="dropdown-object">server</span>.
+			</label>
+      </div>
+    </div>
+    <div class="dropdown-actions">
+      <a class="btn btn-xs btn-dropdown-danger btn-block btn-confirmation btn-confirmation-red" disabled=""></a>
+      <button class="btn btn-xs btn-default btn-outline btn-block" data-dismiss="drop" onclick="hideDropdowns();">Cancel</button>
+    </div>
+  </div>
+
+
+</div>
+</div>
