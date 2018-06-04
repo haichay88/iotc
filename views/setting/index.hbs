@@ -19,11 +19,11 @@
   <div class="tabs-responsive">
     <div class="tabs-container">
       <ul class="nav nav-tabs">
-        <li id="tabl_settingsprofile" class="active"><a href="/settings/#settingsprofile" onclick="changeTabSubmenu('settingsprofile'); hidePostMessages();">Profile</a></li>
-        <li id="tabl_settingsauthentication" class=""><a href="/settings/#settingsauthentication" onclick="changeTabSubmenu('settingsauthentication'); hidePostMessages();">Authentication</a></li>
-        <li id="tabl_settingsapi" class=""><a href="/settings/#settingsapi" onclick="changeTabSubmenu('settingsapi'); hidePostMessages();">API</a></li>
+        <li id="tabl_settingsprofile" class="active"><a href="#" onclick="changeTabSubmenu('settingsprofile'); hidePostMessages();">Profile</a></li>
+        <li id="tabl_settingsauthentication" class=""><a href="#" onclick="changeTabSubmenu('settingsauthentication'); hidePostMessages();">Authentication</a></li>
+        {{!-- <li id="tabl_settingsapi" class=""><a href="/settings/#settingsapi" onclick="changeTabSubmenu('settingsapi'); hidePostMessages();">API</a></li>
         <li id="tabl_settingsusers" class=""><a href="/settings/#settingsusers" onclick="changeTabSubmenu('settingsusers'); hidePostMessages();">Users</a></li>
-        <li id="tabl_settingsnotifications" class=""><a href="/settings/#settingsnotifications" onclick="changeTabSubmenu('settingsnotifications'); hidePostMessages();">Notifications</a></li>
+        <li id="tabl_settingsnotifications" class=""><a href="/settings/#settingsnotifications" onclick="changeTabSubmenu('settingsnotifications'); hidePostMessages();">Notifications</a></li> --}}
       </ul>
       <button class="button-tab btn btn-prev" type="button" data-click="prev-tab"><span class="fonticon fonticon_chevron_left"></span></button>
       <button class="button-tab btn btn-next" type="button" data-click="next-tab"><span class="fonticon fonticon_chevron_right"></span></button>
@@ -84,14 +84,7 @@
 
 
   <div class="block460center submenutabcontent" id="tabc_settingsauthentication" style="display: none;">
-    <h3>
-			Two Factor Auth
-		</h3> Keep your account secure by enabling two-factor authentication. Each time you log in, you’ll be required to provide your password plus a randomly generated access code.
-    <hr class="hr20">
-    <a class="button btn-alternate flexwidth100" href="/settings/twofactor/">
-			Manage Two Factor Auth
-		</a>
-    <hr class="hr50">
+    
     <h3>
 			Change Password
 		</h3>
@@ -100,18 +93,18 @@
       <input type="hidden" name="action" value="changepassword">
       <label class="floatinglabel flexwidth100">
 				<span style="display: none;">Current Password</span>
-				<input type="password" name="current_password" placeholder="Current Password" required="">
+				<input type="password" ng-model="user.currentPass" name="current_password" placeholder="Current Password" required="">
 			</label>
       <label class="floatinglabel flexwidth100">
 				<span style="display: none;">New Password</span>
-				<input type="password" name="password1" placeholder="New Password" required="">
+				<input type="password" ng-model="user.newPass" name="password1" placeholder="New Password" required="">
 			</label>
       <label class="floatinglabel flexwidth100">
 				<span style="display: none;">Confirm New Password</span>
-				<input type="password" name="password2" placeholder="Confirm New Password" required="">
+				<input type="password" name="password2" ng-model="user.confirmNewPass" placeholder="Confirm New Password" required="">
 			</label>
       <hr class="hr10">
-      <input type="submit" value="Change Password" class="flexwidth100">
+      <input type="submit" value="Change Password" class="flexwidth100" ng-click="changePass()">
     </form>
   </div>
 

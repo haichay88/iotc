@@ -2,6 +2,8 @@ var express = require('express');
 
 
 var api = require('../controllers/Api');
+var userApi = require('../controllers/userApi');
+var md5 = require('md5');
 var router = express.Router();
 
 function checkSignIn(req, res, next) {
@@ -18,14 +20,14 @@ function checkSignIn(req, res, next) {
 
 /* GET home page. */
 
-router.get('/', checkSignIn, function(req, res) {
+router.get('/', checkSignIn, function (req, res) {
 
   res.render('setting/index', {
-    title: 'IOT access control',
+    title: 'Setting',
     layout: 'layoutAdmin'
   });
 });
-router.get('/action/:deviceId', checkSignIn, function(req, res) {
+router.get('/action/:deviceId', checkSignIn, function (req, res) {
 
   res.render('device/action', {
     title: 'IOT access control',
@@ -36,54 +38,39 @@ router.get('/action/:deviceId', checkSignIn, function(req, res) {
 
 });
 
-router.get('/getUser', function(req, res) {
+router.get('/getUser', function (req, res) {
 
   var user = req.cookies.us;
   console.log(user);
-  api.getUser(user, function(data) {
+  api.getUser(user, function (data) {
 
     res.json(data);
   });
 });
 
-router.get('/getDevice/:deviceId', function(req, res) {
+router.get('/getDevice/:deviceId', function (req, res) {
   console.log(req.body);
   var user = {
     deviceId: req.params.deviceId
   };
   console.log(user);
-  api.getDevice(user, function(data) {
+  api.getDevice(user, function (data) {
 
     res.json(data);
   });
 });
 
 
-router.post('/checkSeriNumber', function(req, res) {
+router.post('/checkSeriNumber', function (req, res) {
 
   console.log(req.body);
-  api.checkSeriNumber(req.body, function(data) {
+  api.checkSeriNumber(req.body, function (data) {
 
     res.json(data);
   });
 });
 
-router.post('/updateUser', function(req, res) {
-
-  console.log(req.body);
-  var user = req.cookies.us;
-  var device = {
-    userId: user.userId,
-    device: req.body
-  };
-  api.updateUser(req.body, function(data) {
-
-    res.json(data);
-  });
-});
-
-
-router.post('/deleteDevice', function(req, res) {
+router.post('/updateUser', function (req, res) {
 
   console.log(req.body);
   var user = req.cookies.us;
@@ -91,14 +78,52 @@ router.post('/deleteDevice', function(req, res) {
     userId: user.userId,
     device: req.body
   };
-  api.deleteDevice(device, function(data) {
+  api.updateUser(req.body, function (data) {
+
+    res.json(data);
+  });
+});
+
+router.post('/changePass', function (req, res) {
+
+  console.log(req.body);
+  var user = req.cookies.us;
+  if (req.body.newPass != req.body.confirmNewPass) {
+    return res.json({
+      data: {
+        message: "confirm password not match"
+      }
+    });
+  }
+  var userData = {
+    userName: user.userName,
+    userId:user.userId,
+    password:md5(req.body.password),
+    newPass:md5(req.body.newPass) 
+  };
+  userApi.changePass(userData, function (data) {
 
     res.json(data);
   });
 });
 
 
-router.get('/add', function(req, res, next) {
+router.post('/deleteDevice', function (req, res) {
+
+  console.log(req.body);
+  var user = req.cookies.us;
+  var device = {
+    userId: user.userId,
+    device: req.body
+  };
+  api.deleteDevice(device, function (data) {
+
+    res.json(data);
+  });
+});
+
+
+router.get('/add', function (req, res, next) {
 
   res.render('device/add', {
     title: 'IOT access control',
@@ -106,7 +131,7 @@ router.get('/add', function(req, res, next) {
   });
 });
 
-router.post('/add', function(req, res, next) {
+router.post('/add', function (req, res, next) {
 
 
   var user = req.cookies.us;
@@ -116,7 +141,7 @@ router.post('/add', function(req, res, next) {
     devices: req.body
   };
 
-  api.addDevice(device, function(data) {
+  api.addDevice(device, function (data) {
 
     res.json(data);
   });

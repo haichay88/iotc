@@ -27,6 +27,16 @@ app.service("homeService", function($http) {
     });
     return request;
   };
+
+  this.changePass = function(data) {
+    var request = $http({
+      method: "post",
+      url: "/setting/changePass",
+      contentType: "application/json; charset=UTF-8",
+      data: data
+    });
+    return request;
+  };
   this.getStatic = function() {
     var request = $http({
       method: "get",
@@ -120,10 +130,11 @@ app.controller("homeController", function($scope, homeService, socket) {
     promiseGet.then(function(pl) {
         if (pl.data.statusCode == 200) {
           window.location = "/home/login";
-          console.log(pl.data);
-
+         
 
           //toastr.error(pl.data.Message)
+        }else{
+
         }
 
       },
@@ -162,18 +173,45 @@ app.controller("homeController", function($scope, homeService, socket) {
   var inputCode = ['INPUTA', 'INPUTB', 'INPUTC', 'INPUTD', 'INPUTE']
   $scope.userLogin = function() {
 
+    if(!$scope.user||!$scope.user.userName || !$scope.user.password){
+      $scope.error="username or password invalid";
+      return;
+    }
     var promiseGet = homeService.userLogin($scope.user);
     promiseGet.then(function(pl) {
-        if (pl.data) {
-          if (pl.data.statusCode == 200) {
-            window.location = "/device";
-          }
-
-        }
-
+      if (pl.data.statusCode == 200) {
+        window.location = "/device";
+      }else{
+       
+        $scope.error=pl.data.data.message;
+      }
       },
       function(errorPl) {});
   };
+  $scope.changePass = function() {
+
+    // if(!$scope.user||!$scope.user.userName || !$scope.user.password){
+    //   $scope.error="username or password invalid";
+    //   return;
+    // }
+    var senddata={
+      password:$scope.user.currentPass,
+      newPass:$scope.user.newPass,
+      confirmNewPass:$scope.user.confirmNewPass
+    }
+    debugger
+    var promiseGet = homeService.changePass(senddata);
+    promiseGet.then(function(pl) {
+      if (pl.data.statusCode == 200) {
+        //window.location = "/device";
+      }else{
+       
+        $scope.error=pl.data.data.message;
+      }
+      },
+      function(errorPl) {});
+  };
+
 
   $scope.getDeviceInfo = function() {
     var seri = $('#seri').val();
