@@ -142,7 +142,7 @@ app.controller("homeController", function($scope, homeService, socket) {
   };
 
   $scope.updateUser = function() {
-
+    $scope.user.fullName=$scope.user.firstName+" "+ $scope.user.lastName;
     var promiseGet = homeService.updateUser($scope.user);
     promiseGet.then(function(pl) {
         if (pl.data.statusCode == 200) {
@@ -199,7 +199,6 @@ app.controller("homeController", function($scope, homeService, socket) {
       newPass:$scope.user.newPass,
       confirmNewPass:$scope.user.confirmNewPass
     }
-    debugger
     var promiseGet = homeService.changePass(senddata);
     promiseGet.then(function(pl) {
       if (pl.data.statusCode == 200) {

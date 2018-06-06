@@ -2,39 +2,35 @@ var express = require('express');
 
 
 var api = require('../controllers/Api');
+var shared = require('../controllers/shared');
 var router = express.Router();
 
-function checkSignIn(req, res, next) {
 
-  if (req.cookies.us) {
-    next();     //If session exists, proceed to page
-  } else {
-    var err = new Error("Not logged in!");
-
-    res.redirect('/home/login');
-    //next(err);  //Error, trying to access unauthorized page!
-  }
-}
 
 /* GET home page. */
 
-router.get('/', checkSignIn, function (req, res) {
+router.get('/', shared.checkLogin, function (req, res) {
 
-  res.render('device/list', { title: 'IOT access control', layout: 'layoutAdmin' });
+  res.render('device/list',
+    {
+      title: 'IOT access control - device list',
+      layout: 'layoutAdmin',
+      context: shared.getContext(req)
+    });
 });
-router.get('/action/:deviceId', checkSignIn, function (req, res) {
+router.get('/action/:deviceId', shared.checkLogin, function (req, res) {
 
   res.render('device/action',
-  {
-    title: 'IOT access control',
-    layout: 'layoutAdmin',
-    id: req.params.deviceId,
-  });
-  
+    {
+      title: 'IOT access control',
+      layout: 'layoutAdmin',
+      id: req.params.deviceId,
+    });
+
 
 });
 
-router.get('/getDevices', function (req, res) {
+router.get('/getDevices', shared.checkLogin, function (req, res) {
 
   var user = req.cookies.us;
   console.log(user);
@@ -59,14 +55,14 @@ router.get('/getDevice/:deviceId', function (req, res) {
 
 router.post('/checkSeriNumber', function (req, res) {
 
- console.log(req.body);
+  console.log(req.body);
   api.checkSeriNumber(req.body, function (data) {
 
     res.json(data);
   });
 });
 
-router.post('/updateDevice', function (req, res) {
+router.post('/updateDevice', shared.checkLogin, function (req, res) {
 
   console.log(req.body);
   var user = req.cookies.us;
@@ -74,14 +70,14 @@ router.post('/updateDevice', function (req, res) {
     userId: user.userId,
     device: req.body
   };
-   api.updateDevice(device, function (data) {
- 
-     res.json(data);
-   });
- });
+  api.updateDevice(device, function (data) {
+
+    res.json(data);
+  });
+});
 
 
- router.post('/deleteDevice', function (req, res) {
+router.post('/deleteDevice', function (req, res) {
 
   console.log(req.body);
   var user = req.cookies.us;
@@ -89,23 +85,28 @@ router.post('/updateDevice', function (req, res) {
     userId: user.userId,
     device: req.body
   };
-   api.deleteDevice(device, function (data) {
- 
-     res.json(data);
-   });
- });
+  api.deleteDevice(device, function (data) {
+
+    res.json(data);
+  });
+});
 
 
 router.get('/add', function (req, res, next) {
 
-  res.render('device/add', { title: 'IOT access control', layout: 'layoutAdmin' });
+  res.render('device/add',
+    {
+      title: 'IOT access control - add new device',
+      layout: 'layoutAdmin',
+      context:shared.getContext(req)
+    });
 });
 
 router.post('/add', function (req, res, next) {
 
 
   var user = req.cookies.us;
-console.log(req.body);
+  console.log(req.body);
   var device = {
     userId: user.userId,
     devices: req.body

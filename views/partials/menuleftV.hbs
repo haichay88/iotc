@@ -5,16 +5,18 @@
         <a href="/device" class="active">
             Thiết bị
         </a>
+        {{#if context.isAdmin}}
         <a href="/model/">
             Models
         </a>
-        <a href="/support/">
+        {{/if}}
+        {{!-- <a href="/support/">
             Hỗ trợ
         </a>
         <a aria-label="Affiliate" href="/affiliate/">
             A
             <span>f</span>filiate
-        </a>
+        </a> --}}
         <a href="/setting/">
             Tài khoản
         </a>
